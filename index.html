@@ -1,21 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet" />
     <title>Fisheye</title>
   </head>
   <body>
     <header>
-        <img src="assets/images/logo.png" class="logo" />
-        <h1>Nos photographes</h1>
+      <a href="index.html">
+        <img src="assets/images/logo.png" class="logo" alt="logo Fisheye" />
+      </a>
+      <h1>Nos photographes</h1>
     </header>
+
     <main id="main">
-        <div class="photographer_section"></div>
+      <section class="photographer-section"></section>
     </main>
+
+    <!-- Models -->
+    <script src="scripts/models/photographer.js"></script>
+    <!-- API -->
+    <script src="scripts/api/api.js"></script>
+    <!-- Factories -->
     <script src="scripts/factories/photographer.js"></script>
+    <!-- app -->
     <script src="scripts/pages/index.js"></script>
   </body>
 </html>

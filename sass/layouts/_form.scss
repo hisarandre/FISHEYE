@@ -1,0 +1,42 @@
+#contact-modal {
+    display: none;
+  }
+  
+.modal {
+  border-radius: 5px;
+  background-color: $clr-modal;
+  width: 50%;
+  padding: 35px;
+  margin: auto;
+  @include flex($flex-direction: column, $align-items: center, $justify-content: space-between);
+
+  header {
+    justify-content: space-between;
+    width: 100%;
+
+    img { cursor: pointer;}
+  }
+}
+
+form {
+  width: 100%;
+  @include flex($flex-direction: column, $align-items: flex-start);
+
+  label {
+    color: $clr-label;
+    font-size: 36px;
+  }
+
+  div {
+    width: 100%;
+    margin-bottom: 26px;
+    @include flex($flex-direction: column, $align-items: flex-start);
+  }
+
+  input {
+    width: 100%;
+    height: 68px;
+    border: none;
+    border-radius: 5px;
+  }
+}
