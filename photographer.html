@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/photographer.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
@@ -8,32 +8,43 @@
     <title>Fisheye - photographe</title>
   </head>
   <body>
-    <header>
+    <header role="banner">
       <a href="index.html">
-        <img src="assets/images/logo.png" class="logo" alt="logo Fisheye" />
+        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" />
       </a>
     </header>
+
     <main id="main">
-      <div class="photograph-header">
+      <section class="photograph-header">
+        <div class="photograph-header__infos"></div>
         <button class="btn" onclick="displayModal()">Contactez-moi</button>
-      </div>
+        <div class="photograph-header__picture"></div>
+      </section>
     </main>
+
     <div id="contact-modal">
       <div class="modal">
         <header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" onclick="closeModal()" aria-label="Fermer le formulaire" />
         </header>
-        <form>
+
+        <form role="contact form">
           <div>
-            <label>Prénom</label>
-            <input />
+            <label for="firstname">Prénom</label>
+            <input id="firstname" type="text" name="firstname" placeholder="Quel es-ton prénom?" aria-label="quel es-ton prénon?" />
           </div>
-          <button class="btn">Envoyer</button>
+          <button class="btn" aria-label="Envoyer le formulaire">Envoyer</button>
         </form>
       </div>
     </div>
-    <script src="/scripts/pages/photographer.js"></script>
+
+    <!-- API -->
+    <script src="scripts/api/api.js"></script>
+    <!-- Factories -->
+    <script src="scripts/factories/photographer.js"></script>
+    <!-- app -->
+    <script src="scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
   </body>
 </html>

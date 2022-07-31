@@ -3,20 +3,31 @@
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
     margin-top: 100px;
-
-    article {
-        @include flex($flex-direction: column, $align-items: center, $justify-content: center);
-        justify-self: center;
-
-        img {
-            height: 200px;
-            width: 200px;
-            object-fit: cover;
-            border-radius: 100%;
-        }
-
-        .price {
-            color: $clr-price;
-        }
-    }    
 }
+
+
+.card {
+    justify-self: center;
+
+    &__user {
+        @include flex($flex-direction: column, $align-items: center, $justify-content: center);
+        
+        &--name {
+            color: $clr-secondary--1;
+            font-size: 36px;
+            margin-top: 20px;
+        }
+    }
+    
+    &__details {
+        @include flex($flex-direction: column, $align-items: center, $justify-content: center);
+
+        &--location {
+            color: $clr-primary;
+            line-height: 1.6;
+        }
+        
+        &--price { color: $clr-price; }
+    }
+} 
+    

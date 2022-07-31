@@ -2,10 +2,12 @@
 @import "utils/mixins";
 @import "utils/extensions";
 //@import "utils/animations";
+@import "base/base";
 @import "base/reset";
 @import "base/typography";
 @import "components/containers";
 @import "components/buttons";
+@import "components/profile-picture";
 @import "components/logo";
 @import "layouts/header";
 @import "layouts/form";

@@ -1,10 +1,10 @@
-async function getPhotographers() {
-  //recupere le résultat du json
+// GET JSON DATA AND RETURN PHOTOGRAPHERS ARRAYS
+async function getAllPhotographers() {
   const photographers = await getData();
-  // et bien retourner le tableau photographers seulement une fois
-  return photographers;
+  return { photographers };
 }
 
+// DISPLAY DATA ON THE PHOTOGRAPHERS SECTION
 async function displayData(photographers) {
   const photographersSection = document.querySelector(".photographer-section");
 
@@ -16,8 +16,7 @@ async function displayData(photographers) {
 }
 
 async function init() {
-  // Récupère les datas des photographes
-  const photographers = await getPhotographers(); // Pourquoi {photographers}
+  const { photographers } = await getAllPhotographers();
   displayData(photographers);
 }
 

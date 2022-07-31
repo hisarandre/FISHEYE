@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/main.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
@@ -8,19 +8,17 @@
     <title>Fisheye</title>
   </head>
   <body>
-    <header>
+    <header role="banner">
       <a href="index.html">
-        <img src="assets/images/logo.png" class="logo" alt="logo Fisheye" />
+        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" />
       </a>
-      <h1>Nos photographes</h1>
+      <h1 tabindex="0">Nos photographes</h1>
     </header>
 
     <main id="main">
-      <section class="photographer-section"></section>
+      <section class="photographer-section" aria-label="Liste de photographes"></section>
     </main>
 
-    <!-- Models -->
-    <script src="scripts/models/photographer.js"></script>
     <!-- API -->
     <script src="scripts/api/api.js"></script>
     <!-- Factories -->
