@@ -1,9 +1,8 @@
 .photograph-header {
     background-color: $clr-secondary--3;
-    height: 300px;
+    min-height: 300px;
     padding: 50px;
     margin: 0 100px;
-
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;

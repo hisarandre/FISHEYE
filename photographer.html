@@ -18,15 +18,16 @@
       <section class="photograph-header">
         <div class="photograph-header__infos"></div>
         <button class="btn" onclick="displayModal()">Contactez-moi</button>
-        <div class="photograph-header__picture"></div>
       </section>
+
+      <section class="photograph-gallery"></section>
     </main>
 
     <div id="contact-modal">
       <div class="modal">
         <header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" aria-label="Fermer le formulaire" />
+          <img src="assets/icons/close.svg" onclick="closeModal()" aria-label="Fermer le formulaire" alt="close icon" />
         </header>
 
         <form role="contact form">
@@ -43,8 +44,17 @@
     <script src="scripts/api/api.js"></script>
     <!-- Factories -->
     <script src="scripts/factories/photographer.js"></script>
-    <!-- app -->
-    <script src="scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
+    <!-- App -->
+    <script src="scripts/app.js"></script>
+    <!-- Templates -->
+    <script src="scripts/templates/userProfile.js"></script>
+    <script src="scripts/templates/mediaGallery.js"></script>
+    <!-- Models -->
+    <script src="scripts/models/photographer.js"></script>
+    <script src="scripts/models/media.js"></script>
+    <script src="scripts/models/photo.js"></script>
+
+    <!-- Forms -->
+    <script src="scripts/utils/contactform.js"></script>
   </body>
 </html>
