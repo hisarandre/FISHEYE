@@ -1,6 +1,6 @@
 class Api {
   constructor() {
-    this._url = "data/photographers.json";
+    this._url = "././data/photographers.json";
   }
 
   async getData() {
@@ -27,6 +27,7 @@ class Api {
 
   async getMediasData(photographerId) {
     const data = await this.getData();
+
     return data.media.filter((element) => element.photographerId == photographerId);
   }
 }
