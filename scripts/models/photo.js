@@ -6,6 +6,6 @@ class Photo extends Media {
   }
 
   get url() {
-    return `assets/galeries/${this.photographerId}/${this._url}`;
+    return `<img src="assets/galeries/${this.photographerId}/optimized/${this._url}">`;
   }
 }

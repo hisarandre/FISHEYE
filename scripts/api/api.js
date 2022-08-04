@@ -1,6 +1,6 @@
 class Api {
   constructor() {
-    this._url = "././data/photographers.json";
+    this._url = "data/photographers.json";
   }
 
   async getData() {

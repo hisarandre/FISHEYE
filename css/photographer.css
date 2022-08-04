@@ -223,7 +223,7 @@ form input {
 .photograph-header__infos--name {
   color: #D3573C;
   font-size: 64px;
-  line-height: 1.2;
+  line-height: 1.5;
 }
 .photograph-header__infos--location {
   color: #901C1C;
@@ -233,6 +233,61 @@ form input {
 .photograph-header__infos p {
   font-size: 18px;
   line-height: 2;
+}
+
+.photograph-filters {
+  margin: 0 100px;
+  padding: 30px 0 50px 0;
+}
+
+.photograph-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-column-gap: 7%;
+  grid-row-gap: 3%;
+  grid-auto-flow: row;
+  align-items: center;
+  margin: 0 100px;
+}
+
+.card-media {
+  width: 100%;
+}
+.card-media video,
+.card-media img {
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 2%;
+}
+.card-media__infos {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card-media__infos--title {
+  color: #901C1C;
+  font-size: 24px;
+  width: 75%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card-media__infos--likes::after {
+  margin-left: 10px;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 22px;
+  color: #901C1C;
+  content: "\f004";
 }
 
 /*# sourceMappingURL=photographer.css.map */

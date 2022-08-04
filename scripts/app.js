@@ -33,6 +33,7 @@ class App {
     mediasData
       .map((media) => new PhotographerFactory(media, "media"))
       .forEach((media) => {
+        console.log(media);
         const Template = new MediaGallery(media);
         this.photographerGallery.appendChild(Template.createMediaGallery());
       });
