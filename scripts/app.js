@@ -3,6 +3,7 @@ class App {
     this.photographersSection = document.querySelector(".photographer-section");
     this.photographerHeader = document.querySelector(".photograph-header");
     this.photographerGallery = document.querySelector(".photograph-gallery");
+    this.body = document.querySelector("main");
     this.dataApi = new Api();
   }
 
@@ -10,7 +11,7 @@ class App {
     const photographersData = await this.dataApi.getPhotographersData();
 
     photographersData
-      .map((photographer) => new PhotographerFactory(photographer, "photographers"))
+      .map((photographer) => new Photographer(photographer))
       .forEach((photographer) => {
         const Template = new UserCard(photographer);
         this.photographersSection.appendChild(Template.createUserCard());
@@ -18,25 +19,39 @@ class App {
   }
 
   async displayProfile() {
-    const idInUrl = new URL(document.location).searchParams.get("id");
-    const photograperData = await this.dataApi.getPhotograperById(idInUrl);
+    const photographerData = await this.dataApi.getPhotographerById();
 
-    const photograperById = new PhotographerFactory(photograperData, "photographerById");
-    const Template = new UserProfile(photograperById);
+    const photographerById = new Photographer(photographerData);
+    const Template = new UserProfile(photographerById);
     this.photographerHeader.appendChild(Template.createUserProfile());
   }
 
   async displayGallery() {
-    const idInUrl = new URL(document.location).searchParams.get("id");
-    const mediasData = await this.dataApi.getMediasData(idInUrl);
+    const mediasData = await this.dataApi.getMediasData();
 
     mediasData
-      .map((media) => new PhotographerFactory(media, "media"))
+      .map((media) => new MediaFactory(media))
       .forEach((media) => {
-        console.log(media);
         const Template = new MediaGallery(media);
         this.photographerGallery.appendChild(Template.createMediaGallery());
       });
+  }
+
+  async displayLikesBox() {
+    const photographerData = await this.dataApi.getPhotographerById();
+    const photographerById = new Photographer(photographerData);
+    const mediasData = await this.dataApi.getMediasData();
+
+    //get all media likes
+    var totalLikes = 0;
+    mediasData
+      .map((media) => new MediaFactory(media))
+      .forEach((media) => {
+        return (totalLikes += media.likes);
+      });
+
+    const Template = new LikesBox(totalLikes, photographerById.price);
+    this.body.appendChild(Template.createLikesBox());
   }
 }
 
@@ -49,4 +64,5 @@ if (indexPage) {
 } else if (!indexPage) {
   app.displayProfile();
   app.displayGallery();
+  app.displayLikesBox();
 }

@@ -101,10 +101,12 @@ h1 {
   font-weight: bold;
 }
 
-.modal h2 {
+.modal h1 {
+  color: black;
   font-size: 64px;
   font-weight: normal;
-  text-align: center;
+  line-height: 1.5;
+  margin-top: -22px;
 }
 
 .btn {

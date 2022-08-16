@@ -18,7 +18,7 @@
     <main id="main">
       <section class="photograph-header">
         <div class="photograph-header__infos"></div>
-        <button class="btn" onclick="displayModal()">Contactez-moi</button>
+        <button class="btn" onclick="contactModal.displayModal()">Contactez-moi</button>
       </section>
 
       <section class="photograph-filters"></section>
@@ -26,39 +26,110 @@
       <section class="photograph-gallery"></section>
     </main>
 
-    <div id="contact-modal">
+    <!--modal background-->
+    <div id="modal-background" class="visuallyhidden">
+      <!--modal-->
       <div class="modal">
         <header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" aria-label="Fermer le formulaire" alt="close icon" />
+          <h1 class="modal__title"></h1>
+          <img
+            src="assets/icons/close.svg"
+            class="modal__close-btn"
+            onclick="contactModal.closeModal()"
+            aria-label="Fermer le formulaire"
+            alt="close icon"
+          />
         </header>
 
-        <form role="contact form">
-          <div>
+        <!--form-->
+        <form class="contact-form" role="contact form" novalidate>
+          <div class="form-data">
             <label for="firstname">Prénom</label>
-            <input id="firstname" type="text" name="firstname" placeholder="Quel es-ton prénom?" aria-label="quel es-ton prénon?" />
+            <input
+              id="firstname"
+              type="text"
+              name="firstname"
+              placeholder="Quel est votre prenom?"
+              aria-label="Quel est votre prenom?"
+              minlength="2"
+              required
+              aria-invalid="false"
+              aria-errormessage="err-firstname"
+            />
+            <span id="err-firstname" class="errormessage"></span>
+          </div>
+          <div class="form-data">
+            <label for="lastname">Nom</label>
+            <input
+              id="lastname"
+              type="text"
+              name="lastname"
+              placeholder="Quel est votre nom?"
+              aria-label="Quel est votre nom?"
+              minlength="2"
+              required
+              aria-invalid="false"
+              aria-errormessage="err-lastname"
+            />
+            <span id="err-lastname" class="errormessage"></span>
+          </div>
+          <div class="form-data">
+            <label for="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              placeholder="Quel est votre email?"
+              aria-label="quel est votre email?"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+              required
+              aria-invalid="false"
+              aria-errormessage="err-email"
+            />
+            <span id="err-email" class="errormessage"></span>
+          </div>
+          <div class="form-data">
+            <label for="message">Votre message</label>
+            <textarea id="message" name="message"></textarea>
           </div>
           <button class="btn" aria-label="Envoyer le formulaire">Envoyer</button>
         </form>
+      </div>
+
+      <!--thanks modal-->
+      <div class="modal-thanks visuallyhidden">
+        <img
+          src="assets/icons/close.svg"
+          class="modal__close-btn"
+          onclick="contactModal.closeModal()"
+          aria-label="Fermer le formulaire"
+          alt="close icon"
+        />
+        <div class="modal-thanks__message">
+          <p>Merci <span class="modal-thanks__name"></span></p>
+          <p>Votre message a bien été envoyé!</p>
+        </div>
+        <button class="btn" onclick="contactModal.closeModal()" aria-label="Fermer le formulaire">Fermer</button>
       </div>
     </div>
 
     <!-- API -->
     <script src="scripts/api/api.js"></script>
     <!-- Factories -->
-    <script src="scripts/factories/photographer.js"></script>
+    <script src="scripts/factories/mediaFactory.js"></script>
     <!-- App -->
     <script src="scripts/app.js"></script>
     <!-- Templates -->
     <script src="scripts/templates/userProfile.js"></script>
     <script src="scripts/templates/mediaGallery.js"></script>
+    <script src="scripts/templates/likesBox.js"></script>
     <!-- Models -->
     <script src="scripts/models/photographer.js"></script>
     <script src="scripts/models/media.js"></script>
     <script src="scripts/models/photo.js"></script>
     <script src="scripts/models/video.js"></script>
-
-    <!-- Forms -->
-    <script src="scripts/utils/contactform.js"></script>
+    <!-- Utils -->
+    <script src="scripts/utils/modal.js"></script>
+    <script src="scripts/utils/form.js"></script>
   </body>
 </html>

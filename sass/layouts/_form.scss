@@ -1,20 +1,57 @@
-#contact-modal {
-    display: none;
+#modal-background {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(169,169,169, 0.5);
   }
   
 .modal {
+  position: relative;
   border-radius: 5px;
   background-color: $clr-modal;
   width: 50%;
   padding: 35px;
-  margin: auto;
-  @include flex($flex-direction: column, $align-items: center, $justify-content: space-between);
+  margin: 40px auto;
+  z-index: 10;
+
+  &__close-btn { 
+    position: absolute; 
+    right: 0;
+    top: 0;
+    padding: 35px;
+    cursor: pointer; 
+  }
 
   header {
+    align-items: flex-start;
     justify-content: space-between;
+    height: auto;
     width: 100%;
+  }
+}
 
-    img { cursor: pointer;}
+.modal-thanks {
+  position: relative;
+  border-radius: 5px;
+  background-color: $clr-modal;
+  width: 50%;
+  padding: 35px;
+  margin: 40px auto;
+  z-index: 10;
+  font-size: 30px;
+  height: 80vh;
+  
+  @include flex($flex-direction: column, $justify-content: space-between);
+
+  &__message {
+    @include flex($flex-direction: column, $justify-content: center, $align-items: center);
+    
+    flex-grow: 2;
+    text-align: center;
   }
 }
 
@@ -27,6 +64,16 @@ form {
     font-size: 36px;
   }
 
+  textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-size: 20px;
+    resize: none;
+  }
+
   div {
     width: 100%;
     margin-bottom: 26px;
@@ -34,11 +81,27 @@ form {
   }
 
   input {
+    font-size: 20px;
     width: 100%;
     height: 68px;
     border: none;
     border-radius: 5px;
   }
+}
+
+.errormessage {
+  font-size: 20px;
+  font-weight: bold;
+  color: $clr-invalid;
+  visibility: hidden;
+}
+
+[aria-invalid="true"] {
+  outline: 2px solid $clr-invalid;
+}
+
+[aria-invalid="true"] ~ .errormessage {
+  visibility: visible;
 }
 
 .visuallyhidden {
