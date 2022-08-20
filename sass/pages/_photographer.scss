@@ -1,4 +1,3 @@
-
 // header
 
 .photograph-header {
@@ -68,7 +67,6 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    
 
     &--title {
       color: $clr-primary;
@@ -101,7 +99,7 @@
   position: fixed;
   bottom: 0;
   right: 30px;
-  padding: 30px; 
+  padding: 30px;
   background-color: $clr-modal;
   border-radius: 5px 5px 0 0;
 }

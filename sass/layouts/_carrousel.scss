@@ -1,0 +1,66 @@
+.wrapper-carrousel {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background-color: $clr-white;
+
+  &__close-btn {
+    color: $clr-primary;
+    font-size: 38px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 35px;
+    cursor: pointer;
+  }
+
+  &__previous-btn {
+    color: $clr-primary;
+    font-size: 38px;
+    position: absolute;
+    left: 0;
+    top: 40vh;
+    padding: 35px;
+    cursor: pointer;
+  }
+
+  &__next-btn {
+    color: $clr-primary;
+    font-size: 38px;
+    position: absolute;
+    right: 0;
+    top: 40vh;
+    padding: 35px;
+    cursor: pointer;
+  }
+}
+
+.photograph-carrousel {
+  margin: auto;
+  margin-top: 5vh;
+  min-width: auto;
+  max-width: 80%;
+  height: 100vh;
+
+  &__media {
+    margin: auto;
+  }
+
+  &__media img,
+  &__media video {
+    margin: auto;
+    max-height: 80vh;
+    border-radius: 5px;
+  }
+
+  &__title {
+    color: $clr-primary;
+    font-size: 24px;
+  }
+}

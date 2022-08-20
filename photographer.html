@@ -27,7 +27,7 @@
     </main>
 
     <!--modal background-->
-    <div id="modal-background" class="visuallyhidden">
+    <div id="modal-background">
       <!--modal-->
       <div class="modal">
         <header>
@@ -97,7 +97,7 @@
       </div>
 
       <!--thanks modal-->
-      <div class="modal-thanks visuallyhidden">
+      <div class="modal-thanks">
         <img
           src="assets/icons/close.svg"
           class="modal__close-btn"
@@ -115,9 +115,15 @@
 
     <!--carrousel-->
     <div class="wrapper-carrousel">
-      <ul class="carrousel">
-        <li class="carrousel__item"></li>
-      </ul>
+      <i
+        onclick="mediaLightbox.close()"
+        aria-label="Fermer le formulaire"
+        alt="close icon"
+        class="wrapper-carrousel__close-btn fa-solid fa-xmark"
+      ></i>
+      <i class="wrapper-carrousel__previous-btn fa-solid fa-chevron-left"></i>
+      <i class="wrapper-carrousel__next-btn fa-solid fa-chevron-right"></i>
+      <ul class="photograph-carrousel"></ul>
     </div>
 
     <!-- API -->
@@ -135,6 +141,7 @@
     <script src="scripts/models/media.js"></script>
     <script src="scripts/models/photo.js"></script>
     <script src="scripts/models/video.js"></script>
+    <script src="scripts/models/lightBox.js"></script>
     <!-- Utils -->
     <script src="scripts/utils/modal.js"></script>
     <script src="scripts/utils/form.js"></script>

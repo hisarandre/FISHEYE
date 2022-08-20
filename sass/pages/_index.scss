@@ -1,33 +1,33 @@
 .photographer-section {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 70px;
-    margin-top: 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 70px;
+  margin-top: 100px;
 }
 
-
 .card {
-    justify-self: center;
+  justify-self: center;
 
-    &__user {
-        @include flex($flex-direction: column, $align-items: center, $justify-content: center);
-        
-        &--name {
-            color: $clr-secondary--1;
-            font-size: 36px;
-            margin-top: 20px;
-        }
-    }
-    
-    &__details {
-        @include flex($flex-direction: column, $align-items: center, $justify-content: center);
+  &__user {
+    @include flex($flex-direction: column, $align-items: center, $justify-content: center);
 
-        &--location {
-            color: $clr-primary;
-            line-height: 1.6;
-        }
-        
-        &--price { color: $clr-price; }
+    &--name {
+      color: $clr-secondary--1;
+      font-size: 36px;
+      margin-top: 20px;
     }
-} 
-    
+  }
+
+  &__details {
+    @include flex($flex-direction: column, $align-items: center, $justify-content: center);
+
+    &--location {
+      color: $clr-primary;
+      line-height: 1.6;
+    }
+
+    &--price {
+      color: $clr-price;
+    }
+  }
+}

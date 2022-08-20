@@ -9,14 +9,14 @@ class Modal {
   }
 
   displayModal() {
-    this._modalBackground.classList.remove("visuallyhidden");
-    this._modal.classList.remove("visuallyhidden");
+    this._modalBackground.style.display = "block";
+    this._modal.style.display = "block";
     this._body.style.overflow = "hidden";
   }
 
   closeModal() {
-    this._modalBackground.classList.add("visuallyhidden");
-    this._modalThanks.classList.add("visuallyhidden");
+    this._modalBackground.style.display = "none";
+    this._modalThanks.style.display = "none";
     this._body.style.overflow = "auto";
   }
 

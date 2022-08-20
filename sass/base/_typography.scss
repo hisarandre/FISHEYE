@@ -1,25 +1,22 @@
 body {
-    font-family: "DM Sans", sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
+  font-family: "DM Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 h1 {
-    color: $clr-primary;
-    margin-right: 100px;
-    font-size: 32px;
-    font-weight: bold;
+  color: $clr-primary;
+  margin-right: 100px;
+  font-size: 32px;
+  font-weight: bold;
 }
 
 // MODAL
 
-.modal {
-    h1 {
-    color: $clr-black;
-    font-size: 64px;
-    font-weight: normal;
-    line-height: 1.5;
-    margin-top: -22px;
-    }  
+.modal h1 {
+  color: $clr-black;
+  font-size: 64px;
+  font-weight: normal;
+  line-height: 1.5;
+  margin-top: -22px;
 }
-

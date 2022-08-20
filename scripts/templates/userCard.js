@@ -13,15 +13,18 @@ class UserCard {
     $cardUser.setAttribute("tabindex", "0");
     $cardUser.classList.add("card__user");
 
+    //create url
     const $urlWithId = `./photographer.html?id=${this._photographer.id}`;
     const $url = document.createElement("a");
     $url.setAttribute("href", $urlWithId);
 
+    //create img
     const $img = document.createElement("img");
     $img.setAttribute("src", `${this._photographer.portrait}`);
     $img.setAttribute("alt", `photos de ${this._photographer.name}`);
     $img.classList.add("profile-picture");
 
+    //create name
     const $userName = document.createElement("h2");
     $userName.textContent = this._photographer.name;
     $userName.classList.add("card__user--name");
@@ -31,13 +34,16 @@ class UserCard {
     $cardDetails.setAttribute("tabindex", "0");
     $cardDetails.classList.add("card__details");
 
+    //create location city + country
     const $location = document.createElement("h3");
     $location.textContent = `${this._photographer.city}, ${this._photographer.country}`;
     $location.classList.add("card__details--location");
 
+    //create tagline
     const $tag = document.createElement("p");
     $tag.textContent = this._photographer.tagline;
 
+    //create price
     const $pricePerDay = document.createElement("span");
     $pricePerDay.textContent = this._photographer.price;
     $pricePerDay.classList.add("card__details--price");

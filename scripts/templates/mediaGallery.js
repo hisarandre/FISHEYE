@@ -2,16 +2,17 @@ class MediaGallery {
   constructor(data) {
     this._media = data;
   }
+
   createMediaGallery() {
     const $card = document.createElement("article");
     $card.classList.add("card-media");
 
-    const $urlWithId = `index.html`;
+    const $urlHref = `index.html`;
     const $url = document.createElement("a");
-    $url.setAttribute("href", $urlWithId);
-
-    const $media = document.createElement("div");
-    $media.innerHTML = this._media.url;
+    $url.classList.add("card-media__link");
+    $url.setAttribute("href", $urlHref);
+    $url.setAttribute("id", this._media.id);
+    $url.innerHTML = this._media.url;
 
     const $infos = document.createElement("div");
     $infos.classList.add("card-media__infos");
@@ -26,12 +27,30 @@ class MediaGallery {
 
     //arborescence
     $card.appendChild($url);
-    $url.appendChild($media);
 
     $card.appendChild($infos);
     $infos.appendChild($title);
     $infos.appendChild($likes);
 
     return $card;
+  }
+
+  createMediaLightBox() {
+    const $wrapperCarrousel = document.querySelector(".wrapper-carrousel");
+    $wrapperCarrousel.style.display = "flex";
+
+    const $carrousel = document.createElement("li");
+    $carrousel.classList.add("photograph-carrousel__media");
+    $carrousel.setAttribute("id", this._media.id);
+    $carrousel.innerHTML = this._media.url;
+
+    const $title = document.createElement("h2");
+    $title.textContent = this._media.title;
+    $title.classList.add("photograph-carrousel__title");
+
+    //arborescence
+    $carrousel.appendChild($title);
+
+    return $wrapperCarrousel, $carrousel;
   }
 }

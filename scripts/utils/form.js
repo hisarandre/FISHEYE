@@ -12,6 +12,7 @@ class Form {
       "err-email": "Veuillez entrer une adresse email valide.",
     };
 
+    //add error message
     fields.forEach((i) => {
       if (i.checkValidity()) {
         i.setAttribute("aria-invalid", "false");
@@ -24,14 +25,16 @@ class Form {
       }
     });
 
+    //send result to console
     if (this.checkValidity()) {
       fields.forEach((i) => {
         console.log(i.value);
       });
 
+      //close modal and opend thanks modal
       document.getElementsByClassName("modal-thanks__name")[0].innerHTML = fields[0].value;
-      document.getElementsByClassName("modal-thanks")[0].classList.remove("visuallyhidden");
-      document.getElementsByClassName("modal")[0].classList.add("visuallyhidden");
+      document.getElementsByClassName("modal-thanks")[0].style.display = "flex";
+      document.getElementsByClassName("modal")[0].style.display = "none";
 
       this.reset();
     }

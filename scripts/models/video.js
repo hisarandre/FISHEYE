@@ -6,7 +6,7 @@ class Video extends Media {
   }
 
   get url() {
-    return `<video>
+    return `<video class="video-controls">
     <source src="assets/galeries/${this.photographerId}/${this._url}" type="video/mp4">
     Your browser does not support the video tag.
     </video>`;
