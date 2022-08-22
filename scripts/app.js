@@ -70,21 +70,48 @@ class App {
       mediaLightBox.previous();
     });
   }
+
   async displayLikesBox() {
     const photographerData = await this.dataApi.getPhotographerById();
     const photographerById = new Photographer(photographerData);
     const mediasData = await this.dataApi.getMediasData();
 
-    //get all media likes
     var totalLikes = 0;
+
+    //get all media likes
     mediasData
       .map((media) => new MediaFactory(media))
       .forEach((media) => {
         return (totalLikes += media.likes);
       });
 
+    //create likesbox
     const Template = new LikesBox(totalLikes, photographerById.price);
     this.body.appendChild(Template.createLikesBox());
+
+    //get all media liked
+    const btnLikes = document.querySelectorAll(".card-media__infos--likes button");
+
+    btnLikes.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.target.classList.toggle("active");
+        var likesOfMedia = parseInt(e.target.previousElementSibling.textContent);
+
+        if (e.target.classList.contains("active")) {
+          totalLikes++;
+          likesOfMedia++;
+          document.querySelector(".likes-box__likes").innerHTML = totalLikes;
+          e.target.previousElementSibling.classList.add("active");
+          e.target.previousElementSibling.innerHTML = likesOfMedia;
+        } else {
+          totalLikes--;
+          likesOfMedia--;
+          document.querySelector(".likes-box__likes").innerHTML = totalLikes;
+          e.target.previousElementSibling.classList.remove("active");
+          e.target.previousElementSibling.innerHTML = likesOfMedia;
+        }
+      });
+    });
   }
 }
 
