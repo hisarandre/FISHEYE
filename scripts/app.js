@@ -38,34 +38,10 @@ class App {
   }
 
   async displayLightBox() {
-    await this.displayGallery();
     const mediasData = await this.dataApi.getMediasData();
-    const mediasLinks = document.querySelectorAll(".card-media__link");
-    const nextBtn = document.querySelector(".wrapper-carrousel__next-btn");
-    const prevBtn = document.querySelector(".wrapper-carrousel__previous-btn");
+    const lightBox = new LightBox();
 
-    mediasLinks.forEach((link) =>
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-        const mediaId = link.getAttribute("id");
-        const mediaLightBox = new LightBox(mediaId, mediasData);
-        mediaLightBox.display();
-      })
-    );
-
-    nextBtn.addEventListener("click", () => {
-      const currentMediaLink = document.querySelector(".photograph-carrousel__media");
-      const mediaId = currentMediaLink.getAttribute("id");
-      const mediaLightBox = new LightBox(mediaId, mediasData);
-      mediaLightBox.next();
-    });
-
-    prevBtn.addEventListener("click", () => {
-      const currentMediaLink = document.querySelector(".photograph-carrousel__media");
-      const mediaId = currentMediaLink.getAttribute("id");
-      const mediaLightBox = new LightBox(mediaId, mediasData);
-      mediaLightBox.previous();
-    });
+    lightBox.init(mediasData);
   }
 
   async displayLikesBox() {
@@ -104,6 +80,7 @@ if (indexPage) {
   app.displayPhotographers();
 } else if (!indexPage) {
   app.displayProfile();
+  app.displayGallery();
   app.displayLightBox();
   app.displayLikesBox();
   app.sortByCategories();

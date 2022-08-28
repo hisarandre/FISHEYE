@@ -27,13 +27,8 @@ class SortMedias {
   }
 
   reset() {
-    var oldGallery = document.querySelector(".photograph-gallery");
     document.querySelectorAll(".card-media").forEach((e) => e.remove());
-
-    // while (oldGallery.firstChild) {
-    //   oldGallery.removeChild(oldGallery.firstChild);
-    // }
-    // document.querySelector(".likes-box").remove();
+    document.querySelector(".likes-box").remove();
   }
 
   displayGallery(newArray) {
@@ -47,7 +42,6 @@ class SortMedias {
       });
 
     const init = new App();
-    //init.displayLightBox();
     init.displayLikesBox();
   }
 }
