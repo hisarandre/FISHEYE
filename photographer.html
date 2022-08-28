@@ -21,7 +21,23 @@
         <button class="btn" onclick="contactModal.displayModal()">Contactez-moi</button>
       </section>
 
-      <section class="photograph-filters"></section>
+      <section class="photograph-filters">
+        <h2>Trier par</h2>
+
+        <ul class="dropdown">
+          <li role="button" aria-labelledby="dropdown-label" id="dropdown__selected" tabindex="0">Popularité</li>
+
+          <i class="fa-solid fa-angle-up dropdown__arrow"></i>
+
+          <li aria-expanded="false" role="list" class="dropdown__list-container">
+            <ul class="dropdown__list">
+              <li class="dropdown__list-item" tabindex="0" id="option-1">Popularité</li>
+              <li class="dropdown__list-item" tabindex="0" id="option-2">Date</li>
+              <li class="dropdown__list-item" tabindex="0" id="option-3">Titre</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
 
       <section class="photograph-gallery"></section>
     </main>
@@ -132,18 +148,22 @@
     <script src="scripts/factories/mediaFactory.js"></script>
     <!-- App -->
     <script src="scripts/app.js"></script>
-    <!-- Templates -->
-    <script src="scripts/templates/userProfile.js"></script>
-    <script src="scripts/templates/mediaGallery.js"></script>
-    <script src="scripts/templates/likesBox.js"></script>
     <!-- Models -->
-    <script src="scripts/models/photographer.js"></script>
     <script src="scripts/models/media.js"></script>
     <script src="scripts/models/photo.js"></script>
+    <script src="scripts/models/photographer.js"></script>
     <script src="scripts/models/video.js"></script>
-    <script src="scripts/models/lightBox.js"></script>
+    <!-- Services -->
+    <script src="scripts/services/lightBox.js"></script>
+    <script src="scripts/services/likes.js"></script>
+    <script src="scripts/services/sortMedias.js"></script>
+    <!-- Templates -->
+    <script src="scripts/templates/likesBox.js"></script>
+    <script src="scripts/templates/mediaGallery.js"></script>
+    <script src="scripts/templates/userProfile.js"></script>
     <!-- Utils -->
     <script src="scripts/utils/modal.js"></script>
     <script src="scripts/utils/form.js"></script>
+    <script src="scripts/utils/dropdown.js"></script>
   </body>
 </html>

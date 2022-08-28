@@ -101,6 +101,11 @@ h1 {
   font-weight: bold;
 }
 
+h2 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
 .modal h1 {
   color: black;
   font-size: 64px;
@@ -134,6 +139,73 @@ h1 {
   border-radius: 100%;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   justify-self: end;
+}
+
+.dropdown {
+  list-style: none;
+  position: relative;
+  border-radius: 5px;
+  width: 170px;
+  height: 55px;
+  padding: 0;
+  background-color: #901c1c;
+  cursor: pointer;
+}
+.dropdown__arrow {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  color: white;
+  transition: transform 0.2s linear;
+  z-index: 2;
+}
+.dropdown__arrow.expanded {
+  transform: rotate(-180deg);
+}
+.dropdown__list {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: -54px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  box-shadow: rgba(100, 100, 111, 0.8) 0px 7px 10px 0px;
+}
+.dropdown__list-container {
+  position: relative;
+}
+.dropdown ul {
+  list-style: none;
+  margin: 0;
+  padding: 0 15px;
+  border-radius: 5px;
+  background-color: #901c1c;
+}
+.dropdown__list-item {
+  color: white;
+  padding: 15px 0px 14px 15px;
+  list-style-position: inside;
+  border-bottom: 1px white solid;
+}
+.dropdown__list-item:last-child {
+  border: none;
+}
+.dropdown__list-item:hover, .dropdown__list-item:focus {
+  font-weight: 900;
+}
+
+#dropdown__selected {
+  color: white;
+  padding: 14px 0px 14px 30px;
+  list-style-position: inside;
+  width: 100%;
+}
+
+.open {
+  opacity: 1;
+  overflow: auto;
+  max-height: 15rem;
 }
 
 .logo {
@@ -350,6 +422,11 @@ form input {
 .photograph-filters {
   margin: 0 100px;
   padding: 30px 0 50px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: normal;
+  gap: 20px;
 }
 
 .photograph-gallery {
@@ -414,7 +491,7 @@ form input {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  gap: 30px;
+  gap: 50px;
   position: fixed;
   bottom: 0;
   right: 30px;

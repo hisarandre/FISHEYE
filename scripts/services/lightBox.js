@@ -4,7 +4,16 @@ class LightBox {
     this._array = mediasData;
   }
 
+  reset() {
+    const carrouselAlreadyOpened = document.querySelectorAll(".photograph-carrousel__media").length > 0;
+    if (carrouselAlreadyOpened) {
+      document.querySelector(".photograph-carrousel__media").remove();
+    }
+  }
+
   display() {
+    this.reset();
+
     document.querySelector(".wrapper-carrousel").style.display = "flex";
     document.querySelectorAll("body")[0].style.overflow = "hidden";
 
@@ -15,9 +24,7 @@ class LightBox {
     document.querySelector(".photograph-carrousel").appendChild(Template.createMediaLightBox());
 
     //add controls to video
-    if (Template._media.constructor.name == "Video") {
-      document.querySelector(".photograph-carrousel__media .video-controls").controls = true;
-    }
+    this.addControlsToVideo(Template._media.constructor.name);
   }
 
   close() {
@@ -25,20 +32,15 @@ class LightBox {
     document.querySelectorAll("body")[0].style.overflow = "auto";
   }
 
-  reset() {
-    const carrouselAlreadyOpened = document.querySelectorAll(".photograph-carrousel__media").length > 0;
-    if (carrouselAlreadyOpened) {
-      document.querySelector(".photograph-carrousel__media").remove();
-    }
-  }
-
   next() {
+    this.reset();
+
     let index = this._array.findIndex((media) => media.id == this._id);
     let endOfArray = this._array.length - 1;
 
     index !== endOfArray ? index++ : (index = 0);
 
-    //create the nextmedia
+    //create the next media
     let nextMedia = this._array[index];
     nextMedia = new MediaFactory(nextMedia);
 
@@ -46,18 +48,18 @@ class LightBox {
     document.querySelector(".photograph-carrousel").appendChild(Template.createMediaLightBox());
 
     //add controls to video
-    if (Template._media.constructor.name == "Video") {
-      document.querySelector(".photograph-carrousel__media .video-controls").controls = true;
-    }
+    this.addControlsToVideo(Template._media.constructor.name);
   }
 
   previous() {
+    this.reset();
+
     let index = this._array.findIndex((media) => media.id == this._id);
     let endOfArray = this._array.length - 1;
 
     index !== 0 ? index-- : (index = endOfArray);
 
-    //create the nextmedia
+    //create the previous media
     let nextMedia = this._array[index];
     nextMedia = new MediaFactory(nextMedia);
 
@@ -65,7 +67,11 @@ class LightBox {
     document.querySelector(".photograph-carrousel").appendChild(Template.createMediaLightBox());
 
     //add controls to video
-    if (Template._media.constructor.name == "Video") {
+    this.addControlsToVideo(Template._media.constructor.name);
+  }
+
+  addControlsToVideo(media) {
+    if (media == "Video") {
       document.querySelector(".photograph-carrousel__media .video-controls").controls = true;
     }
   }

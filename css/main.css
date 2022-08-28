@@ -101,6 +101,11 @@ h1 {
   font-weight: bold;
 }
 
+h2 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
 .modal h1 {
   color: black;
   font-size: 64px;

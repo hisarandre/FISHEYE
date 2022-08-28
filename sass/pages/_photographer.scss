@@ -38,6 +38,8 @@
 .photograph-filters {
   margin: $margin-right-left;
   padding: 30px 0 50px 0;
+  @include flex($align-items: center);
+  gap: 20px;
 }
 
 // gallery
@@ -104,7 +106,7 @@
 
 .likes-box {
   @include flex($align-items: center, $justify-content: space-between);
-  gap: 30px;
+  gap: 50px;
   position: fixed;
   bottom: 0;
   right: 30px;
