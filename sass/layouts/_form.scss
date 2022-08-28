@@ -8,6 +8,7 @@
   width: 100%;
   overflow: auto;
   background-color: rgba(169, 169, 169, 0.5);
+  z-index: 10;
 }
 
 .modal {
@@ -18,7 +19,6 @@
   width: 50%;
   padding: 35px;
   margin: 40px auto;
-  z-index: 10;
 
   &__close-btn {
     position: absolute;

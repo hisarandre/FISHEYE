@@ -5,20 +5,29 @@ class SortMedias {
   }
 
   byOption(selectedOption) {
+    this.reset();
+    const init = new App();
+
     switch (selectedOption) {
       case "option-1":
         const mediasByLikes = this._array.sort((a, b) => b.likes - a.likes);
-        this.displayGallery(mediasByLikes);
+        init.displayGallery(mediasByLikes);
+        init.displayLikesBox();
+
         break;
 
       case "option-2":
         const mediasByDate = this._array.sort((a, b) => a.date.localeCompare(b.date));
-        this.displayGallery(mediasByDate);
+        init.displayGallery(mediasByDate);
+        init.displayLikesBox();
+
         break;
 
       case "option-3":
         const mediasByTitle = this._array.sort((a, b) => a.title.localeCompare(b.title));
-        this.displayGallery(mediasByTitle);
+        init.displayGallery(mediasByTitle);
+        init.displayLikesBox();
+
         break;
 
       default:
@@ -29,19 +38,5 @@ class SortMedias {
   reset() {
     document.querySelectorAll(".card-media").forEach((e) => e.remove());
     document.querySelector(".likes-box").remove();
-  }
-
-  displayGallery(newArray) {
-    this.reset();
-
-    newArray
-      .map((media) => new MediaFactory(media))
-      .forEach((media) => {
-        const Template = new MediaGallery(media);
-        this.photographerGallery.appendChild(Template.createMediaGallery());
-      });
-
-    const init = new App();
-    init.displayLikesBox();
   }
 }

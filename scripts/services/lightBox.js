@@ -1,31 +1,33 @@
 class LightBox {
-  constructor() {}
-
-  init(mediasData) {
-    const mediasLinks = document.querySelectorAll(".card-media__link");
-    const nextBtn = document.querySelector(".wrapper-carrousel__next-btn");
-    const prevBtn = document.querySelector(".wrapper-carrousel__previous-btn");
-
-    mediasLinks.forEach((link) =>
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-        const mediaId = link.getAttribute("id");
-        this.display(mediaId, mediasData);
-      })
-    );
-
-    nextBtn.addEventListener("click", () => {
-      const currentMediaLink = document.querySelector(".photograph-carrousel__media");
-      const mediaId = currentMediaLink.getAttribute("id");
-      this.next(mediaId, mediasData);
-    });
-
-    prevBtn.addEventListener("click", () => {
-      const currentMediaLink = document.querySelector(".photograph-carrousel__media");
-      const mediaId = currentMediaLink.getAttribute("id");
-      this.previous(mediaId, mediasData);
-    });
+  constructor(array) {
+    this._array = array;
   }
+
+  //init() {
+  // const mediasLinks = document.querySelectorAll(".card-media__link");
+  // const nextBtn = document.querySelector(".wrapper-carrousel__next-btn");
+  // const prevBtn = document.querySelector(".wrapper-carrousel__previous-btn");
+
+  // mediasLinks.forEach((link) =>
+  //   link.addEventListener("click", (e) => {
+  //     e.preventDefault();
+  //     const mediaId = link.getAttribute("id");
+  //     this.display(mediaId);
+  //   })
+  // );
+
+  // nextBtn.addEventListener("click", () => {
+  //   const currentMediaLink = document.querySelector(".photograph-carrousel__media");
+  //   const mediaId = currentMediaLink.getAttribute("id");
+  //   this.next(mediaId);
+  // });
+
+  // prevBtn.addEventListener("click", () => {
+  //   const currentMediaLink = document.querySelector(".photograph-carrousel__media");
+  //   const mediaId = currentMediaLink.getAttribute("id");
+  //   this.previous(mediaId);
+  // });
+  //}
 
   reset() {
     const carrouselAlreadyOpened = document.querySelectorAll(".photograph-carrousel__media").length > 0;
@@ -34,13 +36,13 @@ class LightBox {
     }
   }
 
-  display(mediaId, mediasData) {
+  display(mediaId) {
     this.reset();
 
     document.querySelector(".wrapper-carrousel").style.display = "flex";
     document.querySelectorAll("body")[0].style.overflow = "hidden";
 
-    let mediaById = mediasData.find((element) => element.id == mediaId);
+    let mediaById = this._array.find((element) => element.id == mediaId);
     mediaById = new MediaFactory(mediaById);
 
     const Template = new MediaGallery(mediaById);
@@ -55,16 +57,16 @@ class LightBox {
     document.querySelectorAll("body")[0].style.overflow = "auto";
   }
 
-  next(mediaId, mediasData) {
+  next(mediaId) {
     this.reset();
 
-    let index = mediasData.findIndex((media) => media.id == mediaId);
-    let endOfArray = mediasData.length - 1;
+    let index = this._array.findIndex((media) => media.id == mediaId);
+    let endOfArray = this._array.length - 1;
 
     index !== endOfArray ? index++ : (index = 0);
 
     //create the next media
-    let nextMedia = mediasData[index];
+    let nextMedia = this._array[index];
     nextMedia = new MediaFactory(nextMedia);
 
     const Template = new MediaGallery(nextMedia);
@@ -74,16 +76,16 @@ class LightBox {
     this.addControlsToVideo(Template._media.constructor.name);
   }
 
-  previous(mediaId, mediasData) {
+  previous(mediaId) {
     this.reset();
 
-    let index = mediasData.findIndex((media) => media.id == mediaId);
-    let endOfArray = mediasData.length - 1;
+    let index = this._array.findIndex((media) => media.id == mediaId);
+    let endOfArray = this._array.length - 1;
 
     index !== 0 ? index-- : (index = endOfArray);
 
     //create the previous media
-    let nextMedia = mediasData[index];
+    let nextMedia = this._array[index];
     nextMedia = new MediaFactory(nextMedia);
 
     const Template = new MediaGallery(nextMedia);

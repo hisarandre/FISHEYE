@@ -7,7 +7,7 @@ class App {
     this.dataApi = new Api();
   }
 
-  async displayPhotographers() {
+  async initHomePage() {
     const photographersData = await this.dataApi.getPhotographersData();
 
     photographersData
@@ -26,8 +26,24 @@ class App {
     this.photographerHeader.appendChild(Template.createUserProfile());
   }
 
-  async displayGallery() {
-    const mediasData = await this.dataApi.getMediasData();
+  async sortByCategories() {
+    const dorpdownListItems = document.querySelectorAll(".dropdown__list-item");
+    var mediasData = await this.dataApi.getMediasData();
+    const sortMedias = new SortMedias(mediasData);
+
+    dorpdownListItems.forEach((item) => {
+      item.addEventListener("click", () => {
+        sortMedias.byOption(item.id);
+      });
+    });
+  }
+
+  async displayGallery(array) {
+    if (array === undefined) {
+      mediasData = await this.dataApi.getMediasData();
+    } else {
+      var mediasData = array;
+    }
 
     mediasData
       .map((media) => new MediaFactory(media))
@@ -35,13 +51,35 @@ class App {
         const Template = new MediaGallery(media);
         this.photographerGallery.appendChild(Template.createMediaGallery());
       });
+
+    this.displayLightBox(mediasData);
   }
 
-  async displayLightBox() {
-    const mediasData = await this.dataApi.getMediasData();
-    const lightBox = new LightBox();
+  displayLightBox(array) {
+    const mediasLinks = document.querySelectorAll(".card-media__link");
+    const nextBtn = document.querySelector(".wrapper-carrousel__next-btn");
+    const prevBtn = document.querySelector(".wrapper-carrousel__previous-btn");
+    const lightbox = new LightBox(array);
 
-    lightBox.init(mediasData);
+    mediasLinks.forEach((link) =>
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const mediaId = link.getAttribute("id");
+        lightbox.display(mediaId);
+      })
+    );
+
+    nextBtn.addEventListener("click", () => {
+      const currentMediaLink = document.querySelector(".photograph-carrousel__media");
+      const mediaId = currentMediaLink.getAttribute("id");
+      lightbox.next(mediaId);
+    });
+
+    prevBtn.addEventListener("click", () => {
+      const currentMediaLink = document.querySelector(".photograph-carrousel__media");
+      const mediaId = currentMediaLink.getAttribute("id");
+      lightbox.previous(mediaId);
+    });
   }
 
   async displayLikesBox() {
@@ -60,16 +98,11 @@ class App {
     this.body.appendChild(Template.createLikesBox());
   }
 
-  async sortByCategories() {
-    const dorpdownListItems = document.querySelectorAll(".dropdown__list-item");
-    const mediasData = await this.dataApi.getMediasData();
-    const sortMedias = new SortMedias(mediasData);
-
-    dorpdownListItems.forEach((item) => {
-      item.addEventListener("click", () => {
-        sortMedias.byOption(item.id);
-      });
-    });
+  initGallery() {
+    this.displayProfile();
+    this.sortByCategories();
+    this.displayGallery();
+    this.displayLikesBox();
   }
 }
 
@@ -77,11 +110,7 @@ const app = new App();
 var indexPage = window.location.href.includes("index");
 
 if (indexPage) {
-  app.displayPhotographers();
+  app.initHomePage();
 } else if (!indexPage) {
-  app.displayProfile();
-  app.displayGallery();
-  app.displayLightBox();
-  app.displayLikesBox();
-  app.sortByCategories();
+  app.initGallery();
 }
