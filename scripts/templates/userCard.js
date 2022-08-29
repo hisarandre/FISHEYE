@@ -17,6 +17,7 @@ class UserCard {
     const $url = document.createElement("a");
     $url.setAttribute("title", this._photographer.name);
     $url.setAttribute("href", $urlWithId);
+    $url.setAttribute("tabindex", "0");
 
     //create img
     const $img = document.createElement("img");
