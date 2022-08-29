@@ -3,32 +3,6 @@ class LightBox {
     this._array = array;
   }
 
-  //init() {
-  // const mediasLinks = document.querySelectorAll(".card-media__link");
-  // const nextBtn = document.querySelector(".wrapper-carrousel__next-btn");
-  // const prevBtn = document.querySelector(".wrapper-carrousel__previous-btn");
-
-  // mediasLinks.forEach((link) =>
-  //   link.addEventListener("click", (e) => {
-  //     e.preventDefault();
-  //     const mediaId = link.getAttribute("id");
-  //     this.display(mediaId);
-  //   })
-  // );
-
-  // nextBtn.addEventListener("click", () => {
-  //   const currentMediaLink = document.querySelector(".photograph-carrousel__media");
-  //   const mediaId = currentMediaLink.getAttribute("id");
-  //   this.next(mediaId);
-  // });
-
-  // prevBtn.addEventListener("click", () => {
-  //   const currentMediaLink = document.querySelector(".photograph-carrousel__media");
-  //   const mediaId = currentMediaLink.getAttribute("id");
-  //   this.previous(mediaId);
-  // });
-  //}
-
   reset() {
     const carrouselAlreadyOpened = document.querySelectorAll(".photograph-carrousel__media").length > 0;
     if (carrouselAlreadyOpened) {

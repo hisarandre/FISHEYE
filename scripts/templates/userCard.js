@@ -10,18 +10,18 @@ class UserCard {
 
     //create card user
     const $cardUser = document.createElement("section");
-    $cardUser.setAttribute("tabindex", "0");
     $cardUser.classList.add("card__user");
 
     //create url
     const $urlWithId = `./photographer.html?id=${this._photographer.id}`;
     const $url = document.createElement("a");
+    $url.setAttribute("title", this._photographer.name);
     $url.setAttribute("href", $urlWithId);
 
     //create img
     const $img = document.createElement("img");
     $img.setAttribute("src", `${this._photographer.portrait}`);
-    $img.setAttribute("alt", `photos de ${this._photographer.name}`);
+    $img.setAttribute("alt", " ");
     $img.classList.add("profile-picture");
 
     //create name
@@ -55,7 +55,7 @@ class UserCard {
     $cardUser.appendChild($img);
     $cardUser.appendChild($userName);
 
-    $url.appendChild($cardDetails);
+    $card.appendChild($cardDetails);
     $cardDetails.appendChild($location);
     $cardDetails.appendChild($tag);
     $cardDetails.appendChild($pricePerDay);

@@ -39,6 +39,9 @@ class App {
   }
 
   async displayGallery(array) {
+    //array ?? var mediasData = await this.dataApi.getMediasData() :  mediasData = array;
+    var mediasData;
+
     if (array === undefined) {
       mediasData = await this.dataApi.getMediasData();
     } else {
