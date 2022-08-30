@@ -1,4 +1,4 @@
-class Form {
+export class Form {
   constructor() {
     this._form = document.querySelector(".contact-form");
   }
@@ -40,6 +40,3 @@ class Form {
     }
   }
 }
-
-const contactForm = new Form();
-contactForm._form.addEventListener("submit", contactForm.submitForm);

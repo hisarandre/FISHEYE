@@ -1,4 +1,4 @@
-class UserProfile {
+export class UserProfile {
   constructor(data) {
     this._photographer = data;
   }
@@ -10,12 +10,13 @@ class UserProfile {
     const $userName = document.createElement("h1");
     $userName.textContent = this._photographer.name;
     $userName.classList.add("photograph-header__infos--name");
+    $userName.setAttribute("tabindex", "0");
 
     const $photographerDetails = document.createElement("div");
     $photographerDetails.setAttribute("tabindex", "0");
 
     //create location city + country
-    const $location = document.createElement("h3");
+    const $location = document.createElement("h2");
     $location.textContent = `${this._photographer.city}, ${this._photographer.country}`;
     $location.classList.add("photograph-header__infos--location");
 
@@ -29,7 +30,7 @@ class UserProfile {
     //create img
     const $img = document.createElement("img");
     $img.setAttribute("src", `${this._photographer.portrait}`);
-    $img.setAttribute("alt", `photos de ${this._photographer.name}`);
+    $img.setAttribute("alt", " ");
     $img.classList.add("profile-picture");
 
     //arborescence

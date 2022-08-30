@@ -1,4 +1,4 @@
-class LikesBox {
+export class LikesBox {
   constructor(likes, price) {
     this._likes = likes;
     this._price = price;

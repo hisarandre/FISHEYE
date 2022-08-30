@@ -1,4 +1,4 @@
-class SortMedias {
+export class SortMedias {
   constructor(array) {
     this._array = array;
     this.photographerGallery = document.querySelector(".photograph-gallery");
@@ -6,29 +6,15 @@ class SortMedias {
 
   byOption(selectedOption) {
     this.reset();
-    const init = new App();
 
     switch (selectedOption) {
       case "option-1":
-        const mediasByLikes = this._array.sort((a, b) => b.likes - a.likes);
-        init.displayGallery(mediasByLikes);
-        init.displayLikesBox();
-
-        break;
-
+        return this._array.sort((a, b) => b.likes - a.likes);
       case "option-2":
-        const mediasByDate = this._array.sort((a, b) => a.date.localeCompare(b.date));
-        init.displayGallery(mediasByDate);
-        init.displayLikesBox();
-
-        break;
+        return this._array.sort((a, b) => a.date.localeCompare(b.date));
 
       case "option-3":
-        const mediasByTitle = this._array.sort((a, b) => a.title.localeCompare(b.title));
-        init.displayGallery(mediasByTitle);
-        init.displayLikesBox();
-
-        break;
+        return this._array.sort((a, b) => a.title.localeCompare(b.title));
 
       default:
         break;

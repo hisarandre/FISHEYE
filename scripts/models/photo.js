@@ -1,4 +1,5 @@
-class Photo extends Media {
+import { Media } from "./media.js";
+export class Photo extends Media {
   constructor(data) {
     super(data);
 
@@ -6,6 +7,6 @@ class Photo extends Media {
   }
 
   get url() {
-    return `<img src="assets/galeries/${this.photographerId}/optimized/${this._url}">`;
+    return `<img src="assets/galeries/${this.photographerId}/optimized/${this._url}" alt="${this._title}">`;
   }
 }

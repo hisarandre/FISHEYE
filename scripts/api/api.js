@@ -1,4 +1,4 @@
-class Api {
+export class Api {
   constructor() {
     this._url = "data/photographers.json";
   }

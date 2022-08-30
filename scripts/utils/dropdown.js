@@ -1,24 +1,28 @@
-class Dropdown {
+export class Dropdown {
   constructor() {
     this.keyCode = { SPACEBAR: [0, 32], ENTER: 13, DOWN_ARROW: 40, UP_ARROW: 38, ESCAPE_KEY: 27 };
     this.list = document.querySelector(".dropdown__list");
     this.listContainer = document.querySelector(".dropdown__list-container");
     this.dropdownArrow = document.querySelector(".dropdown__arrow");
     this.listItems = document.querySelectorAll(".dropdown__list-item");
-    this.dropdownSelectedNode = document.querySelector("#dropdown__selected");
+    this.dropdownSelected = document.querySelector("#dropdown__selected");
     this.listItemIds = [];
   }
 
   setSelectedListItem(e) {
     let selectedTextToAppend = document.createTextNode(e.target.innerText);
-    this.dropdownSelectedNode.innerHTML = null;
-    this.dropdownSelectedNode.appendChild(selectedTextToAppend);
+    this.list.setAttribute("aria-activedescendant", e.target.id);
+    this.dropdownSelected.innerHTML = null;
+    this.dropdownSelected.appendChild(selectedTextToAppend);
   }
 
   closeList() {
     this.list.classList.remove("open");
     this.dropdownArrow.classList.remove("expanded");
-    this.listContainer.setAttribute("aria-expanded", false);
+    this.list.setAttribute("aria-expanded", false);
+    this.listItems.forEach((item) => {
+      item.removeAttribute("tabindex");
+    });
   }
 
   toggleListVisibility(e) {
@@ -31,7 +35,12 @@ class Dropdown {
     if (e.type === "click" || openDropDown) {
       this.list.classList.toggle("open");
       this.dropdownArrow.classList.toggle("expanded");
-      this.listContainer.setAttribute("aria-expanded", this.list.classList.contains("open"));
+      this.list.classList.contains("open");
+      this.list.setAttribute("aria-expanded", true);
+      this.list.setAttribute("tabindex", 0);
+      this.listItems.forEach((item) => {
+        item.setAttribute("tabindex", 0);
+      });
     }
 
     if (e.keyCode === this.keyCode.DOWN_ARROW) {
@@ -100,8 +109,3 @@ class Dropdown {
     }
   }
 }
-
-const dropdown = new Dropdown();
-dropdown.selectSortOption();
-document.querySelector("#dropdown__selected").addEventListener("click", (e) => dropdown.toggleListVisibility(e));
-document.querySelector("#dropdown__selected").addEventListener("keydown", (e) => dropdown.toggleListVisibility(e));

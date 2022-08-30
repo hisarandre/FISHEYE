@@ -1,4 +1,6 @@
-class Likes {
+import { MediaFactory } from "../factories/MediaFactory.js";
+
+export class Likes {
   constructor(mediasData) {
     this.mediasData = mediasData;
   }

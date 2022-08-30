@@ -1,4 +1,4 @@
-class MediaGallery {
+export class MediaGallery {
   constructor(data) {
     this._media = data;
   }
@@ -7,17 +7,19 @@ class MediaGallery {
     const $card = document.createElement("article");
     $card.classList.add("card-media");
 
-    const $urlHref = `index.html`;
+    const $urlHref = "#";
     const $url = document.createElement("a");
     $url.classList.add("card-media__link");
     $url.setAttribute("href", $urlHref);
     $url.setAttribute("id", this._media.id);
+    $url.setAttribute("title", `${this._media.title}, closeup view`);
+
     $url.innerHTML = this._media.url;
 
     const $infos = document.createElement("div");
     $infos.classList.add("card-media__infos");
 
-    const $title = document.createElement("h2");
+    const $title = document.createElement("h4");
     $title.textContent = this._media.title;
     $title.classList.add("card-media__infos--title");
 
@@ -30,6 +32,7 @@ class MediaGallery {
     const $btnlikes = document.createElement("button");
     $btnlikes.classList.add("fa-solid");
     $btnlikes.classList.add("fa-heart");
+    $btnlikes.setAttribute("aria-label", "likes");
 
     //arborescence
     $card.appendChild($url);

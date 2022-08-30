@@ -1,4 +1,4 @@
-class UserCard {
+export class UserCard {
   constructor(data) {
     this._photographer = data;
   }

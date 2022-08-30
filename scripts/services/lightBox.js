@@ -1,4 +1,7 @@
-class LightBox {
+import { MediaGallery } from "../templates/mediaGallery.js";
+import { MediaFactory } from "../factories/MediaFactory.js";
+
+export class LightBox {
   constructor(array) {
     this._array = array;
   }
@@ -33,7 +36,8 @@ class LightBox {
 
   next(mediaId) {
     this.reset();
-
+    console.log(this._array);
+    console.log(mediaId);
     let index = this._array.findIndex((media) => media.id == mediaId);
     let endOfArray = this._array.length - 1;
 

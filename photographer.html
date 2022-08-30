@@ -9,7 +9,7 @@
     <title>Fisheye - photographe</title>
   </head>
   <body>
-    <header role="banner">
+    <header>
       <a href="index.html">
         <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" />
       </a>
@@ -18,22 +18,26 @@
     <main id="main">
       <section class="photograph-header">
         <div class="photograph-header__infos"></div>
-        <button class="btn" onclick="contactModal.displayModal()">Contactez-moi</button>
+        <button class="btn">Contactez-moi</button>
       </section>
 
       <section class="photograph-filters">
-        <h2>Trier par</h2>
+        <h3 id="dropdown-label">Trier par</h2>
 
         <ul class="dropdown">
-          <li role="button" aria-labelledby="dropdown-label" id="dropdown__selected" tabindex="0">Popularité</li>
+          <li role="button" aria-expanded="false" aria-labelledby="dropdown-label" aria-haspopup="listbox" id="dropdown__selected" tabindex="0">Popularité</li>
 
-          <i class="fa-solid fa-angle-up dropdown__arrow"></i>
+          <i class="fa-solid fa-angle-up dropdown__arrow" aria-hidden="true"></i>
 
-          <li aria-expanded="false" role="list" class="dropdown__list-container">
-            <ul class="dropdown__list">
-              <li class="dropdown__list-item" tabindex="0" id="option-1">Popularité</li>
-              <li class="dropdown__list-item" tabindex="0" id="option-2">Date</li>
-              <li class="dropdown__list-item" tabindex="0" id="option-3">Titre</li>
+          <li class="dropdown__list-container" >
+            <ul class="dropdown__list"
+            aria-expanded="false"
+            role="listbox"
+            aria-labelledby="dropdown-label"
+            aria-activedescendant="">
+              <li role="option" class="dropdown__list-item" aria-selected="false" id="option-1">Popularité</li>
+              <li role="option" class="dropdown__list-item" aria-selected="false" id="option-2">Date</li>
+              <li role="option" class="dropdown__list-item" aria-selected="false" id="option-3">Titre</li>
             </ul>
           </li>
         </ul>
@@ -43,16 +47,15 @@
     </main>
 
     <!--modal background-->
-    <div id="modal-background">
+    <div id="modal-background" role="dialog" aria-hidden="true" aria-labelledby="modal__title">
       <!--modal-->
       <div class="modal">
         <header>
-          <h1 class="modal__title"></h1>
+          <h1 id="modal__title"></h1>
           <img
             src="assets/icons/close.svg"
             class="modal__close-btn"
-            onclick="contactModal.closeModal()"
-            aria-label="Fermer le formulaire"
+            aria-label="Close contact Form"
             alt="close icon"
           />
         </header>
@@ -60,55 +63,55 @@
         <!--form-->
         <form class="contact-form" role="contact form" novalidate>
           <div class="form-data">
-            <label for="firstname">Prénom</label>
+            <label id="firstname" for="firstname">Prénom</label>
             <input
               id="firstname"
               type="text"
               name="firstname"
-              placeholder="Quel est votre prenom?"
-              aria-label="Quel est votre prenom?"
+              aria-labelledby="firstname"
               minlength="2"
               required
+              aria-required="true" 
               aria-invalid="false"
               aria-errormessage="err-firstname"
             />
             <span id="err-firstname" class="errormessage"></span>
           </div>
           <div class="form-data">
-            <label for="lastname">Nom</label>
+            <label id="lastname" for="lastname">Nom</label>
             <input
               id="lastname"
               type="text"
               name="lastname"
-              placeholder="Quel est votre nom?"
-              aria-label="Quel est votre nom?"
+              aria-labelledby="lastname"
               minlength="2"
               required
+              aria-required="true"
               aria-invalid="false"
               aria-errormessage="err-lastname"
             />
             <span id="err-lastname" class="errormessage"></span>
           </div>
           <div class="form-data">
-            <label for="email">Email</label>
+            <label id="email" for="email">Email</label>
             <input
               id="email"
               type="email"
               name="email"
-              placeholder="Quel est votre email?"
-              aria-label="quel est votre email?"
+              aria-labelledby="email"
               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
               required
+              aria-required="true"
               aria-invalid="false"
               aria-errormessage="err-email"
             />
             <span id="err-email" class="errormessage"></span>
           </div>
           <div class="form-data">
-            <label for="message">Votre message</label>
-            <textarea id="message" name="message"></textarea>
+            <label id="message" for="message">Votre message</label>
+            <textarea id="message" name="message" aria-labelledby="message"></textarea>
           </div>
-          <button class="btn" aria-label="Envoyer le formulaire">Envoyer</button>
+          <button class="btn" aria-label="Send">Envoyer</button>
         </form>
       </div>
 
@@ -117,7 +120,6 @@
         <img
           src="assets/icons/close.svg"
           class="modal__close-btn"
-          onclick="contactModal.closeModal()"
           aria-label="Fermer le formulaire"
           alt="close icon"
         />
@@ -125,14 +127,13 @@
           <p>Merci <span class="modal-thanks__name"></span></p>
           <p>Votre message a bien été envoyé!</p>
         </div>
-        <button class="btn" onclick="contactModal.closeModal()" aria-label="Fermer le formulaire">Fermer</button>
+        <button class="btn" aria-label="Fermer le formulaire">Fermer</button>
       </div>
     </div>
 
     <!--carrousel-->
     <div class="wrapper-carrousel">
       <i
-        onclick="mediaLightbox.close()"
         aria-label="Fermer le formulaire"
         alt="close icon"
         class="wrapper-carrousel__close-btn fa-solid fa-xmark"
@@ -143,27 +144,27 @@
     </div>
 
     <!-- API -->
-    <script src="scripts/api/api.js"></script>
+    <!-- <script src="scripts/api/api.js"></script> -->
     <!-- Factories -->
-    <script src="scripts/factories/mediaFactory.js"></script>
+    <!-- <script src="scripts/factories/mediaFactory.js"></script> -->
     <!-- App -->
-    <script src="scripts/app.js"></script>
+    <script type="module" src="scripts/app.js"></script>
     <!-- Models -->
-    <script src="scripts/models/media.js"></script>
+    <!-- <script src="scripts/models/media.js"></script>
     <script src="scripts/models/photo.js"></script>
     <script src="scripts/models/photographer.js"></script>
-    <script src="scripts/models/video.js"></script>
+    <script src="scripts/models/video.js"></script> -->
     <!-- Services -->
-    <script src="scripts/services/lightBox.js"></script>
+    <!-- <script src="scripts/services/lightBox.js"></script>
     <script src="scripts/services/likes.js"></script>
-    <script src="scripts/services/sortMedias.js"></script>
+    <script src="scripts/services/sortMedias.js"></script> -->
     <!-- Templates -->
-    <script src="scripts/templates/likesBox.js"></script>
+    <!-- <script src="scripts/templates/likesBox.js"></script>
     <script src="scripts/templates/mediaGallery.js"></script>
-    <script src="scripts/templates/userProfile.js"></script>
+    <script src="scripts/templates/userProfile.js"></script> -->
     <!-- Utils -->
-    <script src="scripts/utils/modal.js"></script>
+    <!-- <script src="scripts/utils/modal.js"></script>
     <script src="scripts/utils/form.js"></script>
-    <script src="scripts/utils/dropdown.js"></script>
+    <script src="scripts/utils/dropdown.js"></script> -->
   </body>
 </html>
