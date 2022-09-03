@@ -2,6 +2,7 @@ export class Dropdown {
   constructor() {
     this.keyCode = { SPACEBAR: [0, 32], ENTER: 13, DOWN_ARROW: 40, UP_ARROW: 38, ESCAPE_KEY: 27 };
     this.list = document.querySelector(".dropdown__list");
+    this.dorpdownListItems = document.querySelectorAll(".dropdown__list-item");
     this.listContainer = document.querySelector(".dropdown__list-container");
     this.dropdownArrow = document.querySelector(".dropdown__arrow");
     this.listItems = document.querySelectorAll(".dropdown__list-item");

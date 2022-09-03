@@ -80,24 +80,21 @@
     }
 
     &--likes {
-      @include flex($align-items: center, $justify-content: space-between);
-    }
-
-    &--likes p.active {
-      color: $clr-primary;
-      font-weight: 900;
-    }
-
-    &--likes button {
       margin-left: 10px;
-      font-weight: 900;
       font-size: 22px;
       background-color: $clr-white;
       color: $clr-black;
     }
 
-    &--likes button.active {
+    &--likes:after {
+      font-family: "Font Awesome 5 Free";
+      content: " \f004";
+      font-weight: 700;
+    }
+
+    &--likes.active {
       color: $clr-primary;
+      font-weight: 700;
     }
   }
 }

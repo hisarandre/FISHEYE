@@ -3,8 +3,8 @@ export class Form {
     this._form = document.querySelector(".contact-form");
   }
 
-  submitForm(event) {
-    event.preventDefault();
+  submitForm(e) {
+    e.preventDefault();
     const fields = document.querySelectorAll("input, textarea");
     const errMessage = {
       "err-firstname": "Veuillez entrer 2 caractères ou plus.",
@@ -36,7 +36,22 @@ export class Form {
       document.getElementsByClassName("modal-thanks")[0].style.display = "flex";
       document.getElementsByClassName("modal")[0].style.display = "none";
 
+      //focus on new modal
+      document.querySelector(".modal-thanks__message").setAttribute("tabindex", 0);
+      document.querySelector(".modal-thanks .btn").setAttribute("tabindex", 0);
+      document.querySelector(".modal-thanks__message").focus();
+
       this.reset();
+    }
+  }
+
+  focusControl(e) {
+    if (e.key === "ArrowDown") {
+      document.querySelector(".modal-thanks .btn").focus();
+    }
+
+    if (e.key === "ArrowUp") {
+      document.querySelector(".modal-thanks__message").focus();
     }
   }
 }

@@ -467,24 +467,19 @@ form input {
   text-overflow: ellipsis;
 }
 .card-media__infos--likes {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-.card-media__infos--likes p.active {
-  color: #901c1c;
-  font-weight: 900;
-}
-.card-media__infos--likes button {
   margin-left: 10px;
-  font-weight: 900;
   font-size: 22px;
   background-color: white;
   color: black;
 }
-.card-media__infos--likes button.active {
+.card-media__infos--likes:after {
+  font-family: "Font Awesome 5 Free";
+  content: " \f004";
+  font-weight: 700;
+}
+.card-media__infos--likes.active {
   color: #901c1c;
+  font-weight: 700;
 }
 
 .likes-box {

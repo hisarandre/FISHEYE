@@ -1,5 +1,5 @@
 import { Api } from "./api/api.js";
-import { MediaFactory } from "./factories/MediaFactory.js";
+import { MediaFactory } from "./factories/mediaFactory.js";
 import { Photographer } from "./models/photographer.js";
 import { UserCard } from "./templates/userCard.js";
 import { UserProfile } from "./templates/userProfile.js";
@@ -19,6 +19,8 @@ class App {
     this.photographerGallery = document.querySelector(".photograph-gallery");
     this.body = document.querySelector("main");
     this.dataApi = new Api();
+    this.contactModal = new Modal();
+    this.contactForm = new Form();
     this.lightbox = null;
   }
 
@@ -42,8 +44,6 @@ class App {
   }
 
   async sortByCategories() {
-    const dorpdownListItems = document.querySelectorAll(".dropdown__list-item");
-    //const dorpdownListSelected = document.querySelector("#dropdown__selected");
     var mediasData = await this.dataApi.getMediasData();
     const sortMedias = new SortMedias(mediasData);
     const dropdown = new Dropdown();
@@ -52,7 +52,7 @@ class App {
     dropdown.dropdownSelected.addEventListener("click", (e) => dropdown.toggleListVisibility(e));
     dropdown.dropdownSelected.addEventListener("keydown", (e) => dropdown.toggleListVisibility(e));
 
-    dorpdownListItems.forEach((item) => {
+    dropdown.dorpdownListItems.forEach((item) => {
       item.addEventListener("click", () => {
         let medias = sortMedias.byOption(item.id);
         this.displayGallery(medias);
@@ -130,29 +130,37 @@ class App {
   }
 
   displayForm() {
-    const contactModal = new Modal();
-    const contactForm = new Form();
-    const btnsClose = document.querySelectorAll(".modal__close-btn");
     const btnContact = document.querySelector(".photograph-header .btn");
-    const btnThanksClose = document.querySelector(".modal-thanks .btn");
 
     btnContact.addEventListener("click", (e) => {
       e.preventDefault();
-      contactModal.displayModal();
-      contactModal.displayPhotographerName();
+      this.contactModal.displayModal();
+      this.contactModal.displayPhotographerName();
     });
 
-    btnsClose.forEach((btn) => {
+    this.contactModal._closeBtn.forEach((btn) => {
       btn.addEventListener("click", () => {
-        contactModal.closeModal();
+        this.contactModal.closeModal();
+      });
+
+      btn.addEventListener("keypress", (e) => {
+        if (e.key == "Enter") {
+          this.contactModal.closeModal();
+        }
       });
     });
 
-    btnThanksClose.addEventListener("click", () => {
-      contactModal.closeModal();
+    this.contactModal._closeThanksBtn.addEventListener("click", () => {
+      this.contactModal.closeModal();
     });
 
-    contactForm._form.addEventListener("submit", contactForm.submitForm);
+    const focusableContent = this.contactModal._modal.querySelectorAll(this.contactModal._focusableElements);
+    focusableContent.forEach((element) => {
+      element.addEventListener("keydown", (e) => this.contactModal.focusControl(e));
+    });
+
+    this.contactForm._form.addEventListener("submit", this.contactForm.submitForm);
+    document.getElementsByClassName("modal-thanks")[0].addEventListener("keydown", (e) => this.contactForm.focusControl(e));
   }
 
   initGallery() {

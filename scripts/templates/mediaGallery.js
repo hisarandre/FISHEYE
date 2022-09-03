@@ -23,16 +23,17 @@ export class MediaGallery {
     $title.textContent = this._media.title;
     $title.classList.add("card-media__infos--title");
 
-    const $likes = document.createElement("div");
+    const $likes = document.createElement("button");
     $likes.classList.add("card-media__infos--likes");
+    $likes.setAttribute("aria-label", "likes");
+    $likes.textContent = this._media.likes;
 
-    const $nbrLikes = document.createElement("p");
-    $nbrLikes.textContent = this._media.likes;
+    //const $nbrLikes = document.createElement("p");
+    //$nbrLikes.textContent = this._media.likes;
 
-    const $btnlikes = document.createElement("button");
-    $btnlikes.classList.add("fa-solid");
-    $btnlikes.classList.add("fa-heart");
-    $btnlikes.setAttribute("aria-label", "likes");
+    // const $btnlikes = document.createElement("span");
+    // $btnlikes.classList.add("fa-solid");
+    // $btnlikes.classList.add("fa-heart");
 
     //arborescence
     $card.appendChild($url);
@@ -40,8 +41,8 @@ export class MediaGallery {
     $card.appendChild($infos);
     $infos.appendChild($title);
     $infos.appendChild($likes);
-    $likes.appendChild($nbrLikes);
-    $likes.appendChild($btnlikes);
+    //$likes.appendChild($nbrLikes);
+    //$likes.appendChild($btnlikes);
 
     return $card;
   }
