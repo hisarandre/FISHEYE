@@ -1,5 +1,5 @@
 import { MediaGallery } from "../templates/mediaGallery.js";
-import { MediaFactory } from "../factories/MediaFactory.js";
+import { MediaFactory } from "../factories/mediaFactory.js";
 
 export class LightBox {
   constructor(array) {

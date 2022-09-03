@@ -1,4 +1,4 @@
-import { MediaFactory } from "../factories/MediaFactory.js";
+import { MediaFactory } from "../factories/mediaFactory.js";
 
 export class Likes {
   constructor(mediasData) {
