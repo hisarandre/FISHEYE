@@ -13,6 +13,7 @@ export class MediaGallery {
     $url.setAttribute("href", $urlHref);
     $url.setAttribute("id", this._media.id);
     $url.setAttribute("title", `${this._media.title}, closeup view`);
+    $url.setAttribute("tabindex", 0);
 
     $url.innerHTML = this._media.url;
 
@@ -28,21 +29,12 @@ export class MediaGallery {
     $likes.setAttribute("aria-label", "likes");
     $likes.textContent = this._media.likes;
 
-    //const $nbrLikes = document.createElement("p");
-    //$nbrLikes.textContent = this._media.likes;
-
-    // const $btnlikes = document.createElement("span");
-    // $btnlikes.classList.add("fa-solid");
-    // $btnlikes.classList.add("fa-heart");
-
     //arborescence
     $card.appendChild($url);
 
     $card.appendChild($infos);
     $infos.appendChild($title);
     $infos.appendChild($likes);
-    //$likes.appendChild($nbrLikes);
-    //$likes.appendChild($btnlikes);
 
     return $card;
   }
@@ -55,6 +47,7 @@ export class MediaGallery {
     $carrousel.classList.add("photograph-carrousel__media");
     $carrousel.setAttribute("id", this._media.id);
     $carrousel.innerHTML = this._media.url;
+    $carrousel.setAttribute("tabindex", 0);
 
     const $title = document.createElement("h2");
     $title.textContent = this._media.title;

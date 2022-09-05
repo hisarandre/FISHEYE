@@ -57,6 +57,13 @@ export class Modal {
     let lastIndex = focusableContent.length;
     let newIndex;
 
+    if (e.key === "Tab") {
+      if (document.activeElement == this._submitBtn) {
+        e.preventDefault();
+        this._closeBtn[0].focus();
+      }
+    }
+
     if (e.key === "ArrowDown") {
       newIndex = index + 1;
 

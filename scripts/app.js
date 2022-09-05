@@ -82,14 +82,19 @@ class App {
 
   displayLightBox(array) {
     const mediasLinks = document.querySelectorAll(".card-media__link");
-    const nextBtn = document.querySelector(".wrapper-carrousel__next-btn");
-    const prevBtn = document.querySelector(".wrapper-carrousel__previous-btn");
     const closeBtn = document.querySelector(".wrapper-carrousel__close-btn");
 
     this.lightbox = new LightBox(array);
 
     closeBtn.addEventListener("click", () => {
       this.lightbox.close();
+    });
+
+    closeBtn.addEventListener("keypress", (e) => {
+      if (e.key == "Enter") {
+        this.lightbox.close();
+        document.querySelector(".card-media__link").focus();
+      }
     });
 
     mediasLinks.forEach((link) =>
@@ -99,17 +104,51 @@ class App {
         this.lightbox.display(mediaId);
       })
     );
+  }
+
+  lightboxControls() {
+    const nextBtn = document.querySelector(".wrapper-carrousel__next-btn");
+    const prevBtn = document.querySelector(".wrapper-carrousel__previous-btn");
+    const carrousel = document.querySelector(".wrapper-carrousel");
+    const media = document.querySelector(".photograph-carrousel__media");
+
+    document.addEventListener("keydown", (e) => {
+      if (carrousel.getAttribute("aria-hidden") == "false") {
+        if (e.key === "ArrowLeft") {
+          this.lightbox.previous();
+        }
+
+        if (e.key === "ArrowRight") {
+          this.lightbox.next();
+        }
+
+        if (e.key === "Escape") {
+          this.lightbox.close();
+        }
+
+        if (e.key === "ArrowUp") {
+          document.querySelector(".wrapper-carrousel__close-btn").focus();
+        }
+
+        if (e.key === "ArrowDown") {
+          document.querySelector(".photograph-carrousel__media").focus();
+        }
+
+        if (e.key === "Tab") {
+          if (document.activeElement == document.querySelector(".photograph-carrousel__media")) {
+            e.preventDefault();
+            document.querySelector(".wrapper-carrousel__close-btn").focus();
+          }
+        }
+      }
+    });
 
     nextBtn.addEventListener("click", () => {
-      const currentMediaLink = document.querySelector(".photograph-carrousel__media");
-      const mediaId = currentMediaLink.getAttribute("id");
-      this.lightbox.next(mediaId);
+      this.lightbox.next();
     });
 
     prevBtn.addEventListener("click", () => {
-      const currentMediaLink = document.querySelector(".photograph-carrousel__media");
-      const mediaId = currentMediaLink.getAttribute("id");
-      this.lightbox.previous(mediaId);
+      this.lightbox.previous();
     });
   }
 
@@ -168,6 +207,7 @@ class App {
     this.sortByCategories();
     this.displayGallery();
     this.displayLikesBox();
+    this.lightboxControls();
     this.displayForm();
   }
 }
