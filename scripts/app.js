@@ -64,11 +64,7 @@ class App {
   async displayGallery(array) {
     var mediasData;
 
-    if (array === undefined) {
-      mediasData = await this.dataApi.getMediasData();
-    } else {
-      mediasData = array;
-    }
+    array === undefined ? (mediasData = await this.dataApi.getMediasData()) : (mediasData = array);
 
     mediasData
       .map((media) => new MediaFactory(media))
@@ -81,23 +77,23 @@ class App {
   }
 
   displayLightBox(array) {
-    const mediasLinks = document.querySelectorAll(".card-media__link");
-    const closeBtn = document.querySelector(".wrapper-carrousel__close-btn");
+    const $mediasLinks = document.querySelectorAll(".card-media__link");
+    const $closeBtn = document.querySelector(".wrapper-carrousel__close-btn");
 
     this.lightbox = new LightBox(array);
 
-    closeBtn.addEventListener("click", () => {
+    $closeBtn.addEventListener("click", () => {
       this.lightbox.close();
     });
 
-    closeBtn.addEventListener("keypress", (e) => {
-      if (e.key == "Enter") {
+    $closeBtn.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
         this.lightbox.close();
-        document.querySelector(".card-media__link").focus();
+        $mediasLinks[0].focus();
       }
     });
 
-    mediasLinks.forEach((link) =>
+    $mediasLinks.forEach((link) =>
       link.addEventListener("click", (e) => {
         e.preventDefault();
         const mediaId = link.getAttribute("id");
@@ -106,14 +102,14 @@ class App {
     );
   }
 
-  lightboxControls() {
-    const nextBtn = document.querySelector(".wrapper-carrousel__next-btn");
-    const prevBtn = document.querySelector(".wrapper-carrousel__previous-btn");
-    const carrousel = document.querySelector(".wrapper-carrousel");
-    const media = document.querySelector(".photograph-carrousel__media");
+  displayLightboxControls() {
+    const $nextBtn = document.querySelector(".wrapper-carrousel__next-btn");
+    const $prevBtn = document.querySelector(".wrapper-carrousel__previous-btn");
+    const $carrousel = document.querySelector(".wrapper-carrousel");
+    const $closeBtn = document.querySelector(".wrapper-carrousel__close-btn");
 
     document.addEventListener("keydown", (e) => {
-      if (carrousel.getAttribute("aria-hidden") == "false") {
+      if ($carrousel.getAttribute("aria-hidden") == "false") {
         if (e.key === "ArrowLeft") {
           this.lightbox.previous();
         }
@@ -127,7 +123,7 @@ class App {
         }
 
         if (e.key === "ArrowUp") {
-          document.querySelector(".wrapper-carrousel__close-btn").focus();
+          $closeBtn.focus();
         }
 
         if (e.key === "ArrowDown") {
@@ -135,19 +131,19 @@ class App {
         }
 
         if (e.key === "Tab") {
-          if (document.activeElement == document.querySelector(".photograph-carrousel__media")) {
+          if (document.activeElement === document.querySelector(".photograph-carrousel__media")) {
             e.preventDefault();
-            document.querySelector(".wrapper-carrousel__close-btn").focus();
+            $closeBtn.focus();
           }
         }
       }
     });
 
-    nextBtn.addEventListener("click", () => {
+    $nextBtn.addEventListener("click", () => {
       this.lightbox.next();
     });
 
-    prevBtn.addEventListener("click", () => {
+    $prevBtn.addEventListener("click", () => {
       this.lightbox.previous();
     });
   }
@@ -169,9 +165,10 @@ class App {
   }
 
   displayForm() {
-    const btnContact = document.querySelector(".photograph-header .btn");
+    const $btnContact = document.querySelector(".photograph-header .btn");
+    const $focusableContent = this.contactModal._modal.querySelectorAll(this.contactModal._focusableElements);
 
-    btnContact.addEventListener("click", (e) => {
+    $btnContact.addEventListener("click", (e) => {
       e.preventDefault();
       this.contactModal.displayModal();
       this.contactModal.displayPhotographerName();
@@ -183,7 +180,7 @@ class App {
       });
 
       btn.addEventListener("keypress", (e) => {
-        if (e.key == "Enter") {
+        if (e.key === "Enter") {
           this.contactModal.closeModal();
         }
       });
@@ -193,8 +190,7 @@ class App {
       this.contactModal.closeModal();
     });
 
-    const focusableContent = this.contactModal._modal.querySelectorAll(this.contactModal._focusableElements);
-    focusableContent.forEach((element) => {
+    $focusableContent.forEach((element) => {
       element.addEventListener("keydown", (e) => this.contactModal.focusControl(e));
     });
 
@@ -207,7 +203,7 @@ class App {
     this.sortByCategories();
     this.displayGallery();
     this.displayLikesBox();
-    this.lightboxControls();
+    this.displayLightboxControls();
     this.displayForm();
   }
 }

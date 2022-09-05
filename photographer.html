@@ -22,19 +22,23 @@
       </section>
 
       <section class="photograph-filters">
-        <h3 id="dropdown-label">Trier par</h2>
+        <h3 id="dropdown-label">Trier par</h3>
 
         <ul class="dropdown">
-          <li role="button" aria-expanded="false" aria-labelledby="dropdown-label" aria-haspopup="listbox" id="dropdown__selected" tabindex="0">Popularité</li>
+          <li aria-expanded="false" aria-labelledby="dropdown-label" aria-haspopup="listbox" id="dropdown__selected" tabindex="0">
+            Popularité
+          </li>
 
-          <i class="fa-solid fa-angle-up dropdown__arrow" aria-hidden="true"></i>
+          <span class="fa-solid fa-angle-up dropdown__arrow" aria-hidden="true"></span>
 
-          <li class="dropdown__list-container" >
-            <ul class="dropdown__list"
-            aria-expanded="false"
-            role="listbox"
-            aria-labelledby="dropdown-label"
-            aria-activedescendant="">
+          <li class="dropdown__list-container">
+            <ul
+              class="dropdown__list"
+              aria-expanded="false"
+              role="listbox"
+              aria-labelledby="dropdown-label"
+              aria-activedescendant="option-1"
+            >
               <li role="option" class="dropdown__list-item" aria-selected="false" id="option-1">Popularité</li>
               <li role="option" class="dropdown__list-item" aria-selected="false" id="option-2">Date</li>
               <li role="option" class="dropdown__list-item" aria-selected="false" id="option-3">Titre</li>
@@ -52,64 +56,56 @@
       <div class="modal">
         <header>
           <h1 id="modal__title"></h1>
-          <img
-            src="assets/icons/close.svg"
-            class="modal__close-btn"
-            aria-label="Close contact Form"
-            alt="close icon"
-          />
+          <img src="assets/icons/close.svg" class="modal__close-btn" aria-label="Close contact Form" alt="close icon" />
         </header>
 
         <!--form-->
-        <form class="contact-form" role="contact form" novalidate>
+        <form class="contact-form" novalidate>
           <div class="form-data">
-            <label id="firstname" for="firstname">Prénom</label>
+            <label for="firstname">Prénom</label>
             <input
               id="firstname"
               type="text"
               name="firstname"
-              aria-labelledby="firstname"
               minlength="2"
               required
-              aria-required="true" 
+              aria-required="true"
               aria-invalid="false"
               aria-errormessage="err-firstname"
             />
-            <span id="err-firstname" class="errormessage"></span>
+            <span id="err-firstname" class="errormessage" tabindex="0"></span>
           </div>
           <div class="form-data">
-            <label id="lastname" for="lastname">Nom</label>
+            <label for="lastname">Nom</label>
             <input
               id="lastname"
               type="text"
               name="lastname"
-              aria-labelledby="lastname"
               minlength="2"
               required
               aria-required="true"
               aria-invalid="false"
               aria-errormessage="err-lastname"
             />
-            <span id="err-lastname" class="errormessage"></span>
+            <span id="err-lastname" class="errormessage" tabindex="0"></span>
           </div>
           <div class="form-data">
-            <label id="email" for="email">Email</label>
+            <label for="email">Email</label>
             <input
               id="email"
               type="email"
               name="email"
-              aria-labelledby="email"
               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
               required
               aria-required="true"
               aria-invalid="false"
               aria-errormessage="err-email"
             />
-            <span id="err-email" class="errormessage"></span>
+            <span id="err-email" class="errormessage" tabindex="0"></span>
           </div>
           <div class="form-data">
-            <label id="message" for="message">Votre message</label>
-            <textarea id="message" name="message" aria-labelledby="message"></textarea>
+            <label for="message">Votre message</label>
+            <textarea id="message" name="message"></textarea>
           </div>
           <button class="btn" aria-label="Send">Envoyer</button>
         </form>
@@ -117,12 +113,7 @@
 
       <!--thanks modal-->
       <div class="modal-thanks">
-        <img
-          src="assets/icons/close.svg"
-          class="modal__close-btn"
-          aria-label="Fermer le formulaire"
-          alt="close icon"
-        />
+        <img src="assets/icons/close.svg" class="modal__close-btn" aria-label="Fermer le formulaire" alt="close icon" />
         <div class="modal-thanks__message">
           <p>Merci <span class="modal-thanks__name"></span></p>
           <p>Votre message a bien été envoyé!</p>
@@ -133,13 +124,9 @@
 
     <!--lightbox-->
     <div class="wrapper-carrousel" role="dialog" aria-hidden="true" aria-label="Image close up view">
-      <i
-        aria-label="Close dialog"
-        alt="close icon"
-        class="wrapper-carrousel__close-btn fa-solid fa-xmark"
-      ></i>
-      <i class="wrapper-carrousel__previous-btn fa-solid fa-chevron-left" aria-label="Previous image"></i>
-      <i class="wrapper-carrousel__next-btn fa-solid fa-chevron-right" aria-label="Next image"></i>
+      <span aria-label="Close dialog" class="wrapper-carrousel__close-btn fa-solid fa-xmark" aria-label="close icon"></span>
+      <span class="wrapper-carrousel__previous-btn fa-solid fa-chevron-left" aria-label="Previous image"></span>
+      <span class="wrapper-carrousel__next-btn fa-solid fa-chevron-right" aria-label="Next image"></span>
       <ul class="photograph-carrousel"></ul>
     </div>
 

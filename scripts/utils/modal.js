@@ -52,9 +52,9 @@ export class Modal {
   }
 
   focusControl(e) {
-    const focusableContent = this._modal.querySelectorAll(this._focusableElements);
-    let index = Array.from(focusableContent).indexOf(document.activeElement);
-    let lastIndex = focusableContent.length;
+    const $focusableContent = this._modal.querySelectorAll(this._focusableElements);
+    let index = Array.from($focusableContent).indexOf(document.activeElement);
+    let lastIndex = $focusableContent.length;
     let newIndex;
 
     if (e.key === "Tab") {
@@ -70,7 +70,7 @@ export class Modal {
       if (newIndex == lastIndex) {
         this._closeBtn[0].focus();
       } else {
-        focusableContent[newIndex].focus();
+        $focusableContent[newIndex].focus();
       }
     }
 
@@ -80,7 +80,7 @@ export class Modal {
       if (newIndex == 0) {
         this._submitBtn.focus();
       } else {
-        focusableContent[newIndex].focus();
+        $focusableContent[newIndex].focus();
       }
     }
   }

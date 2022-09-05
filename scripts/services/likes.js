@@ -19,9 +19,9 @@ export class Likes {
 
   getMediaLiked(totalLikes) {
     //get all media liked
-    const btnLikes = document.querySelectorAll(".card-media__infos--likes");
+    const $btnLikes = document.querySelectorAll(".card-media__infos--likes");
 
-    btnLikes.forEach((btn) => {
+    $btnLikes.forEach((btn) => {
       btn.addEventListener("click", (e) => {
         e.target.classList.toggle("active");
         var likesOfMedia = parseInt(e.target.textContent);

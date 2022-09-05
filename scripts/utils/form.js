@@ -5,15 +5,15 @@ export class Form {
 
   submitForm(e) {
     e.preventDefault();
-    const fields = document.querySelectorAll("input, textarea");
-    const errMessage = {
+    const $fields = document.querySelectorAll("input, textarea");
+    const $errMessage = {
       "err-firstname": "Veuillez entrer 2 caractères ou plus.",
       "err-lastname": "Veuillez entrer 2 caractères ou plus.",
       "err-email": "Veuillez entrer une adresse email valide.",
     };
 
     //add error message
-    fields.forEach((i) => {
+    $fields.forEach((i) => {
       if (i.checkValidity()) {
         i.setAttribute("aria-invalid", "false");
       } else {
@@ -21,13 +21,13 @@ export class Form {
 
         let errorAriaName = i.getAttribute("aria-errormessage");
         let errorId = document.getElementById(errorAriaName);
-        errorId.innerHTML = errMessage[errorAriaName];
+        errorId.innerHTML = $errMessage[errorAriaName];
       }
     });
 
     //send result to console
     if (this.checkValidity()) {
-      fields.forEach((i) => {
+      $fields.forEach((i) => {
         console.log(i.value);
       });
 

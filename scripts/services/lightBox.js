@@ -7,8 +7,8 @@ export class LightBox {
   }
 
   reset() {
-    const carrouselAlreadyOpened = document.querySelectorAll(".photograph-carrousel__media").length > 0;
-    if (carrouselAlreadyOpened) {
+    const $carrouselOpened = document.querySelectorAll(".photograph-carrousel__media").length > 0;
+    if ($carrouselOpened) {
       document.querySelector(".photograph-carrousel__media").remove();
     }
   }
@@ -51,20 +51,18 @@ export class LightBox {
   }
 
   next() {
-    const currentMediaLink = document.querySelector(".photograph-carrousel__media");
-    const mediaId = currentMediaLink.getAttribute("id");
+    const $currentMediaLink = document.querySelector(".photograph-carrousel__media");
+    const $mediaId = $currentMediaLink.getAttribute("id");
 
     this.reset();
 
-    let index = this._array.findIndex((media) => media.id == mediaId);
+    let index = this._array.findIndex((media) => media.id == $mediaId);
     let endOfArray = this._array.length - 1;
 
     index !== endOfArray ? index++ : (index = 0);
 
     //create the next media
     let nextMedia = this._array[index];
-
-    console.log(nextMedia);
     nextMedia = new MediaFactory(nextMedia);
 
     const Template = new MediaGallery(nextMedia);
@@ -76,12 +74,12 @@ export class LightBox {
   }
 
   previous() {
-    const currentMediaLink = document.querySelector(".photograph-carrousel__media");
-    const mediaId = currentMediaLink.getAttribute("id");
+    const $currentMediaLink = document.querySelector(".photograph-carrousel__media");
+    const $mediaId = $currentMediaLink.getAttribute("id");
 
     this.reset();
 
-    let index = this._array.findIndex((media) => media.id == mediaId);
+    let index = this._array.findIndex((media) => media.id == $mediaId);
     let endOfArray = this._array.length - 1;
 
     index !== 0 ? index-- : (index = endOfArray);

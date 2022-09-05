@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/hisarandre/FISHEYE#readme",
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "eslint": "^8.23.0"
   }
 }
