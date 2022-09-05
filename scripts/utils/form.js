@@ -1,6 +1,6 @@
 export class Form {
   constructor() {
-    this._form = document.querySelector(".contact-form");
+    this.$form = document.querySelector(".contact-form");
   }
 
   submitForm(e) {
@@ -32,7 +32,7 @@ export class Form {
       });
 
       //close modal and opend thanks modal
-      document.getElementsByClassName("modal-thanks__name")[0].innerHTML = fields[0].value;
+      document.getElementsByClassName("modal-thanks__name")[0].innerHTML = $fields[0].value;
       document.getElementsByClassName("modal-thanks")[0].style.display = "flex";
       document.getElementsByClassName("modal")[0].style.display = "none";
 

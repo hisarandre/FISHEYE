@@ -1,27 +1,27 @@
 export class Dropdown {
   constructor() {
     this.keyCode = { SPACEBAR: [0, 32], ENTER: 13, DOWN_ARROW: 40, UP_ARROW: 38, ESCAPE_KEY: 27 };
-    this.list = document.querySelector(".dropdown__list");
-    this.dorpdownListItems = document.querySelectorAll(".dropdown__list-item");
-    this.listContainer = document.querySelector(".dropdown__list-container");
-    this.dropdownArrow = document.querySelector(".dropdown__arrow");
-    this.listItems = document.querySelectorAll(".dropdown__list-item");
-    this.dropdownSelected = document.querySelector("#dropdown__selected");
+    this.$list = document.querySelector(".dropdown__list");
+    this.$dorpdownListItems = document.querySelectorAll(".dropdown__list-item");
+    this.$listContainer = document.querySelector(".dropdown__list-container");
+    this.$dropdownArrow = document.querySelector(".dropdown__arrow");
+    this.$listItems = document.querySelectorAll(".dropdown__list-item");
+    this.$dropdownSelected = document.querySelector("#dropdown__selected");
     this.listItemIds = [];
   }
 
   setSelectedListItem(e) {
     let selectedTextToAppend = document.createTextNode(e.target.innerText);
-    this.list.setAttribute("aria-activedescendant", e.target.id);
-    this.dropdownSelected.innerHTML = null;
-    this.dropdownSelected.appendChild(selectedTextToAppend);
+    this.$list.setAttribute("aria-activedescendant", e.target.id);
+    this.$dropdownSelected.innerHTML = null;
+    this.$dropdownSelected.appendChild(selectedTextToAppend);
   }
 
   closeList() {
-    this.list.classList.remove("open");
-    this.dropdownArrow.classList.remove("expanded");
-    this.list.setAttribute("aria-expanded", false);
-    this.listItems.forEach((item) => {
+    this.$list.classList.remove("open");
+    this.$dropdownArrow.classList.remove("expanded");
+    this.$list.setAttribute("aria-expanded", false);
+    this.$listItems.forEach((item) => {
       item.removeAttribute("tabindex");
     });
   }
@@ -34,12 +34,12 @@ export class Dropdown {
     }
 
     if (e.type === "click" || openDropDown) {
-      this.list.classList.toggle("open");
-      this.dropdownArrow.classList.toggle("expanded");
-      this.list.classList.contains("open");
-      this.list.setAttribute("aria-expanded", true);
-      this.list.setAttribute("tabindex", 0);
-      this.listItems.forEach((item) => {
+      this.$list.classList.toggle("open");
+      this.$dropdownArrow.classList.toggle("expanded");
+      this.$list.classList.contains("open");
+      this.$list.setAttribute("aria-expanded", true);
+      this.$list.setAttribute("tabindex", 0);
+      this.$listItems.forEach((item) => {
         item.setAttribute("tabindex", 0);
       });
     }
@@ -54,9 +54,9 @@ export class Dropdown {
   }
 
   selectSortOption() {
-    this.listItems.forEach((item) => this.listItemIds.push(item.id));
+    this.$listItems.forEach((item) => this.listItemIds.push(item.id));
 
-    this.listItems.forEach((item) => {
+    this.$listItems.forEach((item) => {
       item.addEventListener("click", (e) => {
         this.setSelectedListItem(e);
         this.closeList();

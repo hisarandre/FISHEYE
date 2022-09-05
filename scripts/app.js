@@ -14,45 +14,45 @@ import { Modal } from "./utils/modal.js";
 
 class App {
   constructor() {
-    this.photographersSection = document.querySelector(".photographer-section");
-    this.photographerHeader = document.querySelector(".photograph-header");
-    this.photographerGallery = document.querySelector(".photograph-gallery");
-    this.body = document.querySelector("main");
-    this.dataApi = new Api();
-    this.contactModal = new Modal();
-    this.contactForm = new Form();
-    this.lightbox = null;
+    this.$photographersSection = document.querySelector(".photographer-section");
+    this.$photographerHeader = document.querySelector(".photograph-header");
+    this.$photographerGallery = document.querySelector(".photograph-gallery");
+    this.$body = document.querySelector("main");
+    this._dataApi = new Api();
+    this._contactModal = new Modal();
+    this._contactForm = new Form();
+    this._lightbox = null;
   }
 
   async initHomePage() {
-    const photographersData = await this.dataApi.getPhotographersData();
+    const photographersData = await this._dataApi.getPhotographersData();
 
     photographersData
       .map((photographer) => new Photographer(photographer))
       .forEach((photographer) => {
         const Template = new UserCard(photographer);
-        this.photographersSection.appendChild(Template.createUserCard());
+        this.$photographersSection.appendChild(Template.createUserCard());
       });
   }
 
   async displayProfile() {
-    const photographerData = await this.dataApi.getPhotographerById();
+    const photographerData = await this._dataApi.getPhotographerById();
 
     const photographerById = new Photographer(photographerData);
     const Template = new UserProfile(photographerById);
-    this.photographerHeader.appendChild(Template.createUserProfile());
+    this.$photographerHeader.appendChild(Template.createUserProfile());
   }
 
   async sortByCategories() {
-    var mediasData = await this.dataApi.getMediasData();
+    var mediasData = await this._dataApi.getMediasData();
     const sortMedias = new SortMedias(mediasData);
     const dropdown = new Dropdown();
 
     dropdown.selectSortOption();
-    dropdown.dropdownSelected.addEventListener("click", (e) => dropdown.toggleListVisibility(e));
-    dropdown.dropdownSelected.addEventListener("keydown", (e) => dropdown.toggleListVisibility(e));
+    dropdown.$dropdownSelected.addEventListener("click", (e) => dropdown.toggleListVisibility(e));
+    dropdown.$dropdownSelected.addEventListener("keydown", (e) => dropdown.toggleListVisibility(e));
 
-    dropdown.dorpdownListItems.forEach((item) => {
+    dropdown.$dorpdownListItems.forEach((item) => {
       item.addEventListener("click", () => {
         let medias = sortMedias.byOption(item.id);
         this.displayGallery(medias);
@@ -64,13 +64,13 @@ class App {
   async displayGallery(array) {
     var mediasData;
 
-    array === undefined ? (mediasData = await this.dataApi.getMediasData()) : (mediasData = array);
+    array === undefined ? (mediasData = await this._dataApi.getMediasData()) : (mediasData = array);
 
     mediasData
       .map((media) => new MediaFactory(media))
       .forEach((media) => {
         const Template = new MediaGallery(media);
-        this.photographerGallery.appendChild(Template.createMediaGallery());
+        this.$photographerGallery.appendChild(Template.createMediaGallery());
       });
 
     this.displayLightBox(mediasData);
@@ -80,15 +80,15 @@ class App {
     const $mediasLinks = document.querySelectorAll(".card-media__link");
     const $closeBtn = document.querySelector(".wrapper-carrousel__close-btn");
 
-    this.lightbox = new LightBox(array);
+    this._lightbox = new LightBox(array);
 
     $closeBtn.addEventListener("click", () => {
-      this.lightbox.close();
+      this._lightbox.close();
     });
 
     $closeBtn.addEventListener("keypress", (e) => {
       if (e.key === "Enter") {
-        this.lightbox.close();
+        this._lightbox.close();
         $mediasLinks[0].focus();
       }
     });
@@ -97,7 +97,7 @@ class App {
       link.addEventListener("click", (e) => {
         e.preventDefault();
         const mediaId = link.getAttribute("id");
-        this.lightbox.display(mediaId);
+        this._lightbox.display(mediaId);
       })
     );
   }
@@ -111,15 +111,15 @@ class App {
     document.addEventListener("keydown", (e) => {
       if ($carrousel.getAttribute("aria-hidden") == "false") {
         if (e.key === "ArrowLeft") {
-          this.lightbox.previous();
+          this._lightbox.previous();
         }
 
         if (e.key === "ArrowRight") {
-          this.lightbox.next();
+          this._lightbox.next();
         }
 
         if (e.key === "Escape") {
-          this.lightbox.close();
+          this._lightbox.close();
         }
 
         if (e.key === "ArrowUp") {
@@ -140,18 +140,18 @@ class App {
     });
 
     $nextBtn.addEventListener("click", () => {
-      this.lightbox.next();
+      this._lightbox.next();
     });
 
     $prevBtn.addEventListener("click", () => {
-      this.lightbox.previous();
+      this._lightbox.previous();
     });
   }
 
   async displayLikesBox() {
-    const photographerData = await this.dataApi.getPhotographerById();
+    const photographerData = await this._dataApi.getPhotographerById();
     const photographerById = new Photographer(photographerData);
-    const mediasData = await this.dataApi.getMediasData();
+    const mediasData = await this._dataApi.getMediasData();
 
     //get total likes
     let likes = new Likes(mediasData);
@@ -161,41 +161,41 @@ class App {
 
     //create likesbox
     const Template = new LikesBox(totalLikes, photographerById.price);
-    this.body.appendChild(Template.createLikesBox());
+    this.$body.appendChild(Template.createLikesBox());
   }
 
   displayForm() {
     const $btnContact = document.querySelector(".photograph-header .btn");
-    const $focusableContent = this.contactModal._modal.querySelectorAll(this.contactModal._focusableElements);
+    const $focusableContent = this._contactModal.$modal.querySelectorAll(this._contactModal.focusableElements);
 
     $btnContact.addEventListener("click", (e) => {
       e.preventDefault();
-      this.contactModal.displayModal();
-      this.contactModal.displayPhotographerName();
+      this._contactModal.displayModal();
+      this._contactModal.displayPhotographerName();
     });
 
-    this.contactModal._closeBtn.forEach((btn) => {
+    this._contactModal.$closeBtn.forEach((btn) => {
       btn.addEventListener("click", () => {
-        this.contactModal.closeModal();
+        this._contactModal.closeModal();
       });
 
       btn.addEventListener("keypress", (e) => {
         if (e.key === "Enter") {
-          this.contactModal.closeModal();
+          this._contactModal.closeModal();
         }
       });
     });
 
-    this.contactModal._closeThanksBtn.addEventListener("click", () => {
-      this.contactModal.closeModal();
+    this._contactModal.$closeThanksBtn.addEventListener("click", () => {
+      this._contactModal.closeModal();
     });
 
     $focusableContent.forEach((element) => {
-      element.addEventListener("keydown", (e) => this.contactModal.focusControl(e));
+      element.addEventListener("keydown", (e) => this._contactModal.focusControl(e));
     });
 
-    this.contactForm._form.addEventListener("submit", this.contactForm.submitForm);
-    document.getElementsByClassName("modal-thanks")[0].addEventListener("keydown", (e) => this.contactForm.focusControl(e));
+    this._contactForm.$form.addEventListener("submit", this._contactForm.submitForm);
+    document.getElementsByClassName("modal-thanks")[0].addEventListener("keydown", (e) => this._contactForm.focusControl(e));
   }
 
   initGallery() {

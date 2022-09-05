@@ -1,7 +1,6 @@
 export class SortMedias {
   constructor(array) {
     this._array = array;
-    this.photographerGallery = document.querySelector(".photograph-gallery");
   }
 
   byOption(selectedOption) {
