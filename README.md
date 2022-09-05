@@ -21,12 +21,12 @@ FishEye est un site web qui permet aux photographes indépendants de présenter 
 
 ## Liens
 
-[Lien vers la maquette - Figma](https://www.figma.com/file/Q3yNeD7WTK9QHDldg9vaRl/UI-Design-FishEye-FR?node-id=0%3A1)
-[Lien vers le guide des étapes clés](https://course.oc-static.com/projects/Front-End+V2/P5+Javascript+%26+Accessibility/P6+Front-End+-+Etapes+cles.pdf)
+- [Lien vers la maquette - Figma](https://www.figma.com/file/Q3yNeD7WTK9QHDldg9vaRl/UI-Design-FishEye-FR?node-id=0%3A1)
+- [Lien vers le guide des étapes clés](https://course.oc-static.com/projects/Front-End+V2/P5+Javascript+%26+Accessibility/P6+Front-End+-+Etapes+cles.pdf)
 
 ## Ressources
 
-[Un code JS impeccable grâce à ESLint](https://www.synbioz.com/blog/tech/un-code-js-impeccable-grace-a-eslint)
-[Focus Trapping for Accessibility (A11Y)](https://medium.com/@im_rahul/focus-trapping-looping-b3ee658e5177)
-[Creating A Custom, Accessible Drop Down](https://dev.to/emmabostian/creating-a-custom-accessible-drop-down-3gmo)
-[ScreenReader](https://chrome.google.com/webstore/detail/screen-reader/kgejglhpjiefppelpmljglcjbhoiplfn/related?hl=fr)
+- [Un code JS impeccable grâce à ESLint](https://www.synbioz.com/blog/tech/un-code-js-impeccable-grace-a-eslint)
+- [Focus Trapping for Accessibility (A11Y)](https://medium.com/@im_rahul/focus-trapping-looping-b3ee658e5177)
+- [Creating A Custom, Accessible Drop Down](https://dev.to/emmabostian/creating-a-custom-accessible-drop-down-3gmo)
+- [ScreenReader](https://chrome.google.com/webstore/detail/screen-reader/kgejglhpjiefppelpmljglcjbhoiplfn/related?hl=fr)
