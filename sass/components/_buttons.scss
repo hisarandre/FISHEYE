@@ -10,6 +10,7 @@
   border-radius: 5px;
   margin: auto;
   cursor: pointer;
+  transition: all 0.1s ease-out;
 
   &:hover {
     background-color: $clr-secondary--1;
